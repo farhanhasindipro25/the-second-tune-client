@@ -45,7 +45,9 @@ const Menubar = () => {
               {menuItems}
             </ul>
           </div>
-          <img src={logoLight} className="w-28 h-28" alt="" />
+          <Link to="/">
+            <img src={logoLight} className="w-28 h-28" alt="" />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
