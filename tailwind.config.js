@@ -5,7 +5,7 @@ module.exports = {
     themes: [
       {
         theSecondTuneTheme: {
-          primary: "#12263a", // dark blue
+          primary: "#161925", // dark blue
           accent: "#F2F5FF", // white
           error: "#EF3E36", // red
           success: "#00C49A", // green
