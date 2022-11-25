@@ -15,7 +15,7 @@ const JoinCommunity = () => {
           placeholder="Your Email Address"
           className="input input-bordered input-secondary bg-secondary w-9/12"
         />
-        <button className="btn btn-outline btn-secondary">SUBMIT</button>
+        <button className="btn btn-success">SUBMIT</button>
       </div>
     </div>
   );

@@ -17,7 +17,9 @@ const HeroSection = () => {
             <p className="py-6">
               The best place for second-hand musical accessories!
             </p>
-            <button className="btn btn-accent">START EXPLORING</button>
+            <button className="btn btn-success btn-outline">
+              START EXPLORING
+            </button>
           </div>
         </div>
       </div>

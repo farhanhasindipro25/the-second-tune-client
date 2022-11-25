@@ -53,8 +53,8 @@ const Menubar = () => {
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
         </div>
         <div className="navbar-end">
-          <button className="btn btn-accent btn-outline">
-            <Link to="/">LOGIN</Link>
+          <button className="btn btn-success btn-outline">
+            <Link to="/login">LOGIN</Link>
           </button>
         </div>
       </div>
