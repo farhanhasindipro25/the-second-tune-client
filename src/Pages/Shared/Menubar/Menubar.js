@@ -20,16 +20,16 @@ const Menubar = () => {
   const menuItems = (
     <React.Fragment>
       <li className="text-accent">
-        <Link to="/">Home</Link>
+        <Link to="/">HOME</Link>
       </li>
       <li className="text-accent">
-        <Link to="/">Explore Products</Link>
+        <Link to="/">EXPLORE PRODUCTS</Link>
       </li>
       <li className="text-accent">
-        <Link to="/blog">Blog</Link>
+        <Link to="/blog">BLOG</Link>
       </li>
       <li className="text-accent">
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard">DASHBOARD</Link>
       </li>
     </React.Fragment>
   );
