@@ -1,0 +1,32 @@
+[
+    {
+      "_id":1,
+      "categoryName": "Guitars",
+      "categoryImage": "https://wallpaperaccess.com/full/1078877.jpg"
+    },
+    {
+      "_id":2,
+      "categoryName": "Amplifiers",
+      "categoryImage": "https://www.andertons.co.uk/wcsstore/andertons-sas/images/new-release-pages/10-2019/Katana-MkII-50.jpg"
+    },
+    {
+      "_id":3,
+      "categoryName": "Processors",
+      "categoryImage": "https://guitar.com/wp-content/uploads/2019/02/zoom-G1-G1X-Four@1400x1050.jpg"
+    },
+    {
+      "_id":4,
+      "categoryName": "Pedals",
+      "categoryImage": "https://i.pinimg.com/originals/b6/c5/a6/b6c5a65f95586d8457eca233924afc02.jpg"
+    },
+    {
+      "_id":5,
+      "categoryName": "Keyboards",
+      "categoryImage": "https://static.toiimg.com/photo/76006727.cms"
+    },
+    {
+      "_id":6,
+      "categoryName": "Drums",
+      "categoryImage": "https://img.freepik.com/premium-photo/digital-drum-set-showcase-music-store-closeup-view-nobody-assortment-musical-instrument-shop-professional-equipment-musicians-performers_266732-21776.jpg?w=2000"
+    }
+]

@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import HomeCategoryCard from "./HomeCategoryCard";
 
 const HomeCategories = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("productCategories.json")
+      .then((res) => res.json())
+      .then((data) => setCategories(data));
+  }, []);
+
   return (
     <div className="bg-primary">
       <div>
@@ -8,102 +17,12 @@ const HomeCategories = () => {
           PRODUCT CATEGORIES
         </h2>
         <div className="grid grid-cols-3 gap-24 container mx-auto pb-24">
-          <div className="card shadow-xl image-full">
-            <figure>
-              <img
-                src="https://placeimg.com/400/225/arch"
-                className="rounded-xl"
-                alt="Shoes"
-              />
-            </figure>
-            <div className="card-body p-12">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
-          <div className="card shadow-xl image-full">
-            <figure>
-              <img
-                src="https://placeimg.com/400/225/arch"
-                className="rounded-xl"
-                alt="Shoes"
-              />
-            </figure>
-            <div className="card-body p-12">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
-          <div className="card shadow-xl image-full">
-            <figure>
-              <img
-                src="https://placeimg.com/400/225/arch"
-                className="rounded-xl"
-                alt="Shoes"
-              />
-            </figure>
-            <div className="card-body p-12">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
-          <div className="card shadow-xl image-full">
-            <figure>
-              <img
-                src="https://placeimg.com/400/225/arch"
-                className="rounded-xl"
-                alt="Shoes"
-              />
-            </figure>
-            <div className="card-body p-12">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
-          <div className="card shadow-xl image-full">
-            <figure>
-              <img
-                src="https://placeimg.com/400/225/arch"
-                className="rounded-xl"
-                alt="Shoes"
-              />
-            </figure>
-            <div className="card-body p-12">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
-          <div className="card shadow-xl image-full">
-            <figure>
-              <img
-                src="https://placeimg.com/400/225/arch"
-                className="rounded-xl"
-                alt="Shoes"
-              />
-            </figure>
-            <div className="card-body p-12">
-              <h2 className="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
+          {categories.map((category) => (
+            <HomeCategoryCard
+              key={category._id}
+              category={category}
+            ></HomeCategoryCard>
+          ))}
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ const Menubar = () => {
   );
 
   return (
-    <div className="bg-primary">
+    <div className="bg-secondary">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
