@@ -1,10 +1,19 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoLight from "../../../assets/logo/logoLight.png";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const Menubar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
+  };
+  
   const menuItems = (
     <React.Fragment>
       <li className="text-accent">
@@ -56,7 +65,10 @@ const Menubar = () => {
         </div>
         <div className="navbar-end">
           {user?.uid ? (
-            <button className="btn btn-success btn-outline">
+            <button
+              className="btn btn-success btn-outline"
+              onClick={handleLogOut}
+            >
               <Link>LOG OUT</Link>
             </button>
           ) : (
