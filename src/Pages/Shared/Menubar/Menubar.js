@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import logoLight from "../../../assets/logo/logoLight.png";
 import { AuthContext } from "../../../Contexts/AuthProvider";
@@ -6,14 +7,16 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 const Menubar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const handleLogOut = () => {
     logOut()
       .then(() => {
+        toast.success("Logged out successfully!");
         navigate("/");
       })
       .catch((error) => console.error(error));
   };
-  
+
   const menuItems = (
     <React.Fragment>
       <li className="text-accent">
@@ -23,7 +26,10 @@ const Menubar = () => {
         <Link to="/">Explore Products</Link>
       </li>
       <li className="text-accent">
-        <Link to="/">Blog</Link>
+        <Link to="/blog">Blog</Link>
+      </li>
+      <li className="text-accent">
+        <Link to="/dashboard">Dashboard</Link>
       </li>
     </React.Fragment>
   );
