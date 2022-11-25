@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 import useTitle from "../../../Hooks/useTitle";
 
 const Login = () => {
@@ -11,10 +12,23 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
+  const navigate = useNavigate();
+
   const [loginError, setLoginError] = useState("");
+  const { signIn } = useContext(AuthContext);
 
   const handleLogin = (data) => {
     console.log(data);
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoginError(error.message);
+      });
   };
 
   return (
@@ -32,7 +46,7 @@ const Login = () => {
             <input
               type="text"
               {...register("email", { required: "Email is required" })}
-              className="input input-bordered input-primary"
+              className="input input-bordered input-primary text-secondary"
               placeholder="Your Email ID"
             />
             {errors.email && (
@@ -54,7 +68,7 @@ const Login = () => {
                   message: "Password must be alteast 6 characters longer!",
                 },
               })}
-              className="input input-bordered input-primary"
+              className="input input-bordered input-primary text-secondary"
               placeholder="Your Password"
             />
             {errors.password && (
@@ -73,12 +87,12 @@ const Login = () => {
             type="submit"
           />
           {loginError === "Firebase: Error (auth/user-not-found)." && (
-            <p className="text-red-400 text-center mt-4">
+            <p className="text-error text-center mt-4">
               Invalid Email. User not found!
             </p>
           )}
           {loginError === "Firebase: Error (auth/wrong-password)." && (
-            <p className="text-red-400 text-center mt-4">Wrong Password</p>
+            <p className="text-error text-center mt-4">Wrong Password</p>
           )}
         </form>
         <p className="text-center mt-6 text-white">

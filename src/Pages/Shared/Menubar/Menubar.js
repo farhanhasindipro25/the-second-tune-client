@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logoLight from "../../../assets/logo/logoLight.png";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const Menubar = () => {
+  const { user } = useContext(AuthContext);
   const menuItems = (
     <React.Fragment>
       <li className="text-accent">
@@ -53,9 +55,15 @@ const Menubar = () => {
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
         </div>
         <div className="navbar-end">
-          <button className="btn btn-success btn-outline">
-            <Link to="/login">LOGIN</Link>
-          </button>
+          {user?.uid ? (
+            <button className="btn btn-success btn-outline">
+              <Link>LOG OUT</Link>
+            </button>
+          ) : (
+            <button className="btn btn-success btn-outline">
+              <Link to="/login">LOGIN</Link>
+            </button>
+          )}
         </div>
       </div>
     </div>
