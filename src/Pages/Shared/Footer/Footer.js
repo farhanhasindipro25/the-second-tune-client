@@ -36,10 +36,10 @@ const Footer = () => {
         </div>
       </footer>
       <footer className="footer items-center p-4 text-neutral-content container mx-auto pb-14">
-        <div className="items-center grid-flow-col">
+        <div className="items-center grid-flow-col ml-6">
           <p>Copyright © 2022 - All right reserved</p>
         </div>
-        <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end mr-6">
           <Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"

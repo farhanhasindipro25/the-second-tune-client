@@ -16,7 +16,7 @@ const HomeCategories = () => {
         <h2 class="text-accent text-center text-3xl font-semibold pb-20">
           PRODUCT CATEGORIES
         </h2>
-        <div className="grid grid-cols-3 gap-24 container mx-auto pb-24">
+        <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-24 container mx-auto pb-24">
           {categories.map((category) => (
             <HomeCategoryCard
               key={category._id}
