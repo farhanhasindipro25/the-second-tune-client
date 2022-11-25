@@ -13,7 +13,7 @@ const HomeCategories = () => {
   return (
     <div className="bg-primary">
       <div>
-        <h2 class="text-accent text-center text-3xl font-semibold pb-20">
+        <h2 className="text-accent text-center text-3xl font-semibold pb-20">
           PRODUCT CATEGORIES
         </h2>
         <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-10 container mx-auto pb-24">
