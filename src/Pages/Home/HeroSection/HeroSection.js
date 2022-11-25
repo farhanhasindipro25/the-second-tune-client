@@ -3,7 +3,7 @@ import React from "react";
 const HeroSection = () => {
   return (
     <div>
-      <div className="hero bg-primary py-36">
+      <div className="hero bg-primary min-h-screen py-36">
         <div className="hero-content flex-col lg:flex-row-reverse gap-36">
           <img
             src="https://media.istockphoto.com/id/1279654034/photo/studio-microphone-and-pop-shield-on-mic-in-the-empty-recording-studio-with-copy-space.jpg?s=612x612&w=0&k=20&c=hoYDQnNkbwHr4fXKz1eRyxTAXwGZeNvBEKBLqpX-DLg="
