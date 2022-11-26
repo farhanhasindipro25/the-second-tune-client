@@ -3,10 +3,10 @@ import React from "react";
 const ReportedItems = () => {
   return (
     <div>
+      <h2 className="text-success text-3xl font-semibold my-6 flex md:justify-center sm:justify-center justify-center">
+        REPORTED ITEMS
+      </h2>
       <div className="overflow-x-auto w-full mx-2">
-        <h2 className="text-success text-3xl font-semibold my-6 flex md:justify-center sm:justify-center justify-center">
-          REPORTED ITEMS
-        </h2>
         <table className="table w-full rounded-xl mb-10">
           <thead>
             <tr>

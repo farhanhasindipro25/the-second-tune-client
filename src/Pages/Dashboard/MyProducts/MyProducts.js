@@ -5,10 +5,10 @@ const MyProducts = () => {
   useTitle("My Products");
   return (
     <div>
+      <h2 className="text-success text-3xl font-semibold my-6 flex md:justify-center sm:justify-center justify-center">
+        MY PRODUCTS
+      </h2>
       <div className="overflow-x-auto w-full mx-2">
-        <h2 className="text-success text-3xl font-semibold my-6 flex md:justify-center sm:justify-center justify-center">
-          MY PRODUCTS
-        </h2>
         <table className="table w-full rounded-xl mb-10">
           <thead>
             <tr>

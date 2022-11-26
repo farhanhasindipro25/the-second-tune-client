@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const Wishlist = () => {
-    return (
-        <div>
+  return (
+    <div>
+      <h2 className="text-success text-3xl font-semibold my-6 flex md:justify-center sm:justify-center justify-center">
+        WISHLIST
+      </h2>
       <div className="overflow-x-auto w-full mx-2">
-        <h2 className="text-success text-3xl font-semibold my-6 flex md:justify-center sm:justify-center justify-center">
-          WISHLIST
-        </h2>
         <table className="table w-full rounded-xl mb-10">
           <thead>
             <tr>
@@ -398,7 +398,7 @@ const Wishlist = () => {
         </table>
       </div>
     </div>
-    );
+  );
 };
 
 export default Wishlist;
