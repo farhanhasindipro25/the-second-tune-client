@@ -5,41 +5,74 @@ import logoLight from "../../../assets/logo/logoLight.png";
 const Footer = () => {
   return (
     <div className="bg-secondary">
-      <footer className="footer container mx-auto p-10 text-base-content flex justify-between">
+      <footer className="footer container mx-auto p-10 text-accent flex lg:flex-row md:flex-col sm:flex-col flex-col justify-between">
         <div>
           <img src={logoLight} className="w-28 h-28" alt="" />
           <p>
             <span className="font-semibold">THE SECOND TUNE</span>
             <br />
-            <span>The best place for second-hand musical accessories!</span>
+            <span>The best place for second-hand <br /> musical accessories!</span>
           </p>
         </div>
-        <div>
-          <span className="footer-title">Services</span>
-          <Link className="link link-hover">Branding</Link>
-          <Link className="link link-hover">Design</Link>
-          <Link className="link link-hover">Marketing</Link>
-          <Link className="link link-hover">Advertisement</Link>
-        </div>
-        <div>
-          <span className="footer-title">Company</span>
-          <Link className="link link-hover">About us</Link>
-          <Link className="link link-hover">Contact</Link>
-          <Link className="link link-hover">Jobs</Link>
-          <Link className="link link-hover">Press kit</Link>
-        </div>
-        <div>
-          <span className="footer-title">Legal</span>
-          <Link className="link link-hover">Terms of use</Link>
-          <Link className="link link-hover">Privacy policy</Link>
-          <Link className="link link-hover">Cookie policy</Link>
+        <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col lg:gap-36 md:gap-32 sm:gap-14 gap-14">
+          <div className="flex flex-col">
+            <span className="footer-title">BUYER PROCEDURES</span>
+            <Link
+              to="/signup"
+              className="link link-hover text-success font-medium"
+            >
+              Registration
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Booking
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Payment
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Reporting an issue
+            </Link>
+          </div>
+          <div className="flex flex-col">
+            <span className="footer-title">SELLER PROCEDURES</span>
+            <Link
+              to="/signup"
+              className="link link-hover text-success font-medium"
+            >
+              Registration
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Understand Categories
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Uploading Products
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Providing Relevant Information
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Advertising Products
+            </Link>
+          </div>
+          <div className="flex flex-col">
+            <span className="footer-title">Legal</span>
+            <Link className="link link-hover text-success font-medium">
+              Terms of use
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Privacy policy
+            </Link>
+            <Link className="link link-hover text-success font-medium">
+              Payment Policy
+            </Link>
+          </div>
         </div>
       </footer>
-      <footer className="footer items-center p-4 text-neutral-content container mx-auto pb-14">
-        <div className="items-center grid-flow-col ml-6">
+      <footer className="footer flex lg:justify-between md:justify-between sm:justify-center lg:flex-row md:flex-row sm:flex-col flex-col items-center p-4 text-accent container mx-auto pb-14">
+        <div className="items-center grid-flow-col md:ml-6 sm:mx-0 mx-0">
           <p>Copyright © 2022 - All right reserved</p>
         </div>
-        <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end mr-6">
+        <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end md:mr-6 sm:mx-0 mx-0">
           <Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -11,7 +11,7 @@ const HeroSection = () => {
             alt=""
           />
           <div className="">
-            <h1 className="text-5xl font-bold lg:text-start md:text-center sm:text-center text-center">
+            <h1 className="lg:text-5xl md:text-5xl sm:text-3xl text-3xl font-bold lg:text-start md:text-center sm:text-center text-center lg:mt-0 md:mt-10">
               Welcome to <br /> <span>THE SECOND TUNE</span>
             </h1>
             <p className="py-6 lg:text-start md:text-center sm:text-center text-center">

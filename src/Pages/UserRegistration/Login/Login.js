@@ -49,8 +49,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-primary">
-      <div className="w-96 bg-secondary rounded-3xl p-10 my-20">
+    <div className="flex justify-center items-center bg-primary ">
+      <div className="w-96 bg-secondary rounded-3xl p-10 my-20 sm:mx-2 mx-2">
         <h2 className="text-4xl text-center my-6 text-white">Login</h2>
         <form
           className="container mx-auto"
