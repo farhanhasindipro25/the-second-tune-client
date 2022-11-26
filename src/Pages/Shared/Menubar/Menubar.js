@@ -19,16 +19,16 @@ const Menubar = () => {
 
   const menuItems = (
     <React.Fragment>
-      <li className="text-accent">
+      <li className="sm: text-secondary md:text-secondary lg:text-accent">
         <Link to="/">HOME</Link>
       </li>
-      <li className="text-accent">
+      <li className="sm: text-secondary md:text-secondary lg:text-accent">
         <Link to="/">EXPLORE PRODUCTS</Link>
       </li>
-      <li className="text-accent">
+      <li className="sm: text-secondary md:text-secondary lg:text-accent">
         <Link to="/blog">BLOG</Link>
       </li>
-      <li className="text-accent">
+      <li className="sm: text-secondary md:text-secondary lg:text-accent">
         <Link to="/dashboard">DASHBOARD</Link>
       </li>
     </React.Fragment>
@@ -42,7 +42,7 @@ const Menubar = () => {
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-5 w-5 "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -79,9 +79,6 @@ const Menubar = () => {
                       <img src={user.photoURL} alt="" />
                     </div>
                   </div>
-                  <div>
-                    <h2>Welcome, {user.displayName}</h2>
-                  </div>
                   <button
                     className="btn btn-success btn-outline"
                     onClick={handleLogOut}
@@ -105,11 +102,6 @@ const Menubar = () => {
                       d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
-                  {user?.displayName && (
-                    <div>
-                      <h2>Welcome {user.displayName}</h2>
-                    </div>
-                  )}
                   <button
                     className="btn btn-success btn-outline"
                     onClick={handleLogOut}

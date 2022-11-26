@@ -1,12 +1,14 @@
 import React from "react";
+import useTitle from "../../Hooks/useTitle";
 
 const Blog = () => {
+  useTitle("Blog");
   return (
     <div className="bg-primary">
       <h2 className="text-accent text-center text-3xl font-semibold pt-20">
         BLOGS
       </h2>
-      <div className="container mx-auto py-32">
+      <div className="container mx-auto lg:py-32 md:py-40">
         <div
           tabIndex={0}
           className="collapse collapse-arrow border border-base-300 bg-success rounded-box"
