@@ -13,7 +13,7 @@ const JoinCommunity = () => {
         <input
           type="email"
           placeholder="Your Email Address"
-          className="input input-bordered text-secondary input-secondary w-9/12"
+          className="input input-bordered text-secondary input-secondary w-9/12 focus:outline-none"
         />
         <button className="btn btn-secondary">SUBMIT</button>
       </div>

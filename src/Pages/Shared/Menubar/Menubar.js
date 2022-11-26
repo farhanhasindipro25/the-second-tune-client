@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logoLight from "../../../assets/logo/logoLight.png";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
@@ -20,16 +20,52 @@ const Menubar = () => {
   const menuItems = (
     <React.Fragment>
       <li className="sm: text-secondary md:text-secondary lg:text-accent">
-        <Link to="/">HOME</Link>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-success text-secondary rounded font-medium"
+              : "bg-primary text-accent"
+          }
+        >
+          HOME
+        </NavLink>
       </li>
       <li className="sm: text-secondary md:text-secondary lg:text-accent">
-        <Link to="/">EXPLORE PRODUCTS</Link>
+        <NavLink
+          to="/products"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-success text-secondary rounded font-medium"
+              : "bg-primary text-accent"
+          }
+        >
+          EXPLORE PRODUCTS
+        </NavLink>
       </li>
       <li className="sm: text-secondary md:text-secondary lg:text-accent">
-        <Link to="/blog">BLOG</Link>
+        <NavLink
+          to="/blog"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-success text-secondary rounded font-medium"
+              : "bg-primary text-accent"
+          }
+        >
+          BLOG
+        </NavLink>
       </li>
       <li className="sm: text-secondary md:text-secondary lg:text-accent">
-        <Link to="/dashboard">DASHBOARD</Link>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-success text-secondary rounded font-medium"
+              : "bg-primary text-accent"
+          }
+        >
+          DASHBOARD
+        </NavLink>
       </li>
     </React.Fragment>
   );
