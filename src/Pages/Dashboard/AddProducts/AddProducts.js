@@ -1,12 +1,14 @@
 import React from "react";
+import useTitle from "../../../Hooks/useTitle";
 
 const AddProducts = () => {
+  useTitle("Add Products");
   return (
-    <div>
+    <div className="mx-4">
       <h2 className="text-success text-3xl font-semibold mt-6 flex md:justify-center sm:justify-center justify-center">
         ADD PRODUCTS
       </h2>
-      <form className="mt-10 pb-10 bg-secondary ml-4 p-5 rounded-xl">
+      <form className="mt-10 mb-10 bg-secondary p-5 rounded-xl">
         <div className="flex flex-col gap-2 my-4">
           <label htmlFor="ProductName">Product Name</label>
           <input

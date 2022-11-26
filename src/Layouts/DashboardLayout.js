@@ -36,7 +36,7 @@ const DashboardLayout = () => {
               </li>
               <li className="my-2">
                 <NavLink
-                  to="/"
+                  to="/dashboard/myproducts"
                   className={({ isActive }) =>
                     isActive
                       ? "bg-success text-secondary rounded font-medium"
@@ -48,7 +48,7 @@ const DashboardLayout = () => {
               </li>
               <li className="my-2">
                 <NavLink
-                  to="/"
+                  to="/dashboard/mybuyers"
                   className={({ isActive }) =>
                     isActive
                       ? "bg-success text-secondary rounded font-medium"
@@ -60,7 +60,7 @@ const DashboardLayout = () => {
               </li>
               <li className="my-2">
                 <NavLink
-                  to="/"
+                  to="/dashboard/allsellers"
                   className={({ isActive }) =>
                     isActive
                       ? "bg-success text-secondary rounded font-medium"
@@ -72,7 +72,7 @@ const DashboardLayout = () => {
               </li>
               <li className="my-2">
                 <NavLink
-                  to="/"
+                  to="/dashboard/allbuyers"
                   className={({ isActive }) =>
                     isActive
                       ? "bg-success text-secondary rounded font-medium"
@@ -84,7 +84,7 @@ const DashboardLayout = () => {
               </li>
               <li className="my-2">
                 <NavLink
-                  to="/"
+                  to="/dashboard/reporteditems"
                   className={({ isActive }) =>
                     isActive
                       ? "bg-success text-secondary rounded font-medium"
@@ -96,7 +96,7 @@ const DashboardLayout = () => {
               </li>
               <li className="my-2">
                 <NavLink
-                  to="/"
+                  to="/dashboard/myorders"
                   className={({ isActive }) =>
                     isActive
                       ? "bg-success text-secondary rounded font-medium"
@@ -108,7 +108,7 @@ const DashboardLayout = () => {
               </li>
               <li className="my-2">
                 <NavLink
-                  to="/"
+                  to="/dashboard/wishlist"
                   className={({ isActive }) =>
                     isActive
                       ? "bg-success text-secondary rounded font-medium"
