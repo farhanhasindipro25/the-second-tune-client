@@ -25,7 +25,7 @@ const Menubar = () => {
           className={({ isActive }) =>
             isActive
               ? "bg-success text-secondary rounded font-medium"
-              : "bg-primary text-accent"
+              : "bg-secondary text-accent"
           }
         >
           HOME
@@ -37,7 +37,7 @@ const Menubar = () => {
           className={({ isActive }) =>
             isActive
               ? "bg-success text-secondary rounded font-medium"
-              : "bg-primary text-accent"
+              : "bg-secondary text-accent"
           }
         >
           EXPLORE PRODUCTS
@@ -49,7 +49,7 @@ const Menubar = () => {
           className={({ isActive }) =>
             isActive
               ? "bg-success text-secondary rounded font-medium"
-              : "bg-primary text-accent"
+              : "bg-secondary text-accent"
           }
         >
           BLOG
@@ -61,7 +61,7 @@ const Menubar = () => {
           className={({ isActive }) =>
             isActive
               ? "bg-success text-secondary rounded font-medium"
-              : "bg-primary text-accent"
+              : "bg-secondary text-accent"
           }
         >
           DASHBOARD
@@ -93,7 +93,7 @@ const Menubar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52"
             >
               {menuItems}
             </ul>
