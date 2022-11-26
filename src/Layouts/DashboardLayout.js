@@ -24,17 +24,17 @@ const DashboardLayout = () => {
             <ul className="menu p-4 w-80 bg-secondary my-4 rounded-xl text-base-content">
               <li className="my-2">
                 <NavLink
-                  to=""
+                  to="/dashboard/addproducts"
                   className={({ isActive }) =>
                     isActive
                       ? "bg-success text-secondary rounded font-medium"
                       : "bg-primary text-accent"
                   }
                 >
-                  Item1
+                  ADD PRODUCTS
                 </NavLink>
               </li>
-              <li>
+              <li className="my-2">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
@@ -43,7 +43,79 @@ const DashboardLayout = () => {
                       : "bg-primary text-accent"
                   }
                 >
-                  Item3
+                  MY PRODUCTS
+                </NavLink>
+              </li>
+              <li className="my-2">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-success text-secondary rounded font-medium"
+                      : "bg-primary text-accent"
+                  }
+                >
+                  MY BUYERS
+                </NavLink>
+              </li>
+              <li className="my-2">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-success text-secondary rounded font-medium"
+                      : "bg-primary text-accent"
+                  }
+                >
+                  ALL SELLERS
+                </NavLink>
+              </li>
+              <li className="my-2">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-success text-secondary rounded font-medium"
+                      : "bg-primary text-accent"
+                  }
+                >
+                  ALL BUYERS
+                </NavLink>
+              </li>
+              <li className="my-2">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-success text-secondary rounded font-medium"
+                      : "bg-primary text-accent"
+                  }
+                >
+                  REPORTED ITEMS
+                </NavLink>
+              </li>
+              <li className="my-2">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-success text-secondary rounded font-medium"
+                      : "bg-primary text-accent"
+                  }
+                >
+                  MY ORDERS
+                </NavLink>
+              </li>
+              <li className="my-2">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-success text-secondary rounded font-medium"
+                      : "bg-primary text-accent"
+                  }
+                >
+                  WISHLIST
                 </NavLink>
               </li>
             </ul>
