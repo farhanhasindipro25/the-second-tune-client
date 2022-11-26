@@ -1,5 +1,6 @@
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
+import ContactForm from "../ContactForm/ContactForm";
 import HeroSection from "../HeroSection/HeroSection";
 import HomeCategories from "../HomeCategories/HomeCategories";
 import JoinCommunity from "../JoinCommunity/JoinCommunity";
@@ -14,6 +15,7 @@ const Home = () => {
       <HomeCategories></HomeCategories>
       <WorkingProcess></WorkingProcess>
       <JoinCommunity></JoinCommunity>
+      <ContactForm></ContactForm>
     </div>
   );
 };
