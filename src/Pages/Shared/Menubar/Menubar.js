@@ -55,18 +55,20 @@ const Menubar = () => {
           BLOG
         </NavLink>
       </li>
-      <li className="sm: text-secondary md:text-secondary lg:text-accent">
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) =>
-            isActive
-              ? "bg-success text-secondary rounded font-medium"
-              : "bg-secondary text-accent"
-          }
-        >
-          DASHBOARD
-        </NavLink>
-      </li>
+      {user?.uid && (
+        <li className="sm: text-secondary md:text-secondary lg:text-accent">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-success text-secondary rounded font-medium"
+                : "bg-secondary text-accent"
+            }
+          >
+            DASHBOARD
+          </NavLink>
+        </li>
+      )}
     </React.Fragment>
   );
 
