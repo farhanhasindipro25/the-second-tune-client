@@ -27,8 +27,8 @@ const DashboardLayout = () => {
                   to="/dashboard/addproducts"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-success text-secondary rounded font-medium"
-                      : "bg-primary text-accent"
+                      ? "bg-success text-secondary rounded font-medium flex justify-center"
+                      : "btn btn-outline btn-success text-accent flex justify-center"
                   }
                 >
                   ADD PRODUCTS
@@ -39,8 +39,8 @@ const DashboardLayout = () => {
                   to="/dashboard/myproducts"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-success text-secondary rounded font-medium"
-                      : "bg-primary text-accent"
+                      ? "bg-success text-secondary rounded font-medium flex justify-center"
+                      : "btn btn-outline btn-success text-accent flex justify-center"
                   }
                 >
                   MY PRODUCTS
@@ -51,8 +51,8 @@ const DashboardLayout = () => {
                   to="/dashboard/mybuyers"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-success text-secondary rounded font-medium"
-                      : "bg-primary text-accent"
+                      ? "bg-success text-secondary rounded font-medium flex justify-center"
+                      : "btn btn-outline btn-success text-accent flex justify-center"
                   }
                 >
                   MY BUYERS
@@ -63,8 +63,8 @@ const DashboardLayout = () => {
                   to="/dashboard/allsellers"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-success text-secondary rounded font-medium"
-                      : "bg-primary text-accent"
+                      ? "bg-success text-secondary rounded font-medium flex justify-center"
+                      : "btn btn-outline btn-success text-accent flex justify-center"
                   }
                 >
                   ALL SELLERS
@@ -75,8 +75,8 @@ const DashboardLayout = () => {
                   to="/dashboard/allbuyers"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-success text-secondary rounded font-medium"
-                      : "bg-primary text-accent"
+                      ? "bg-success text-secondary rounded font-medium flex justify-center"
+                      : "btn btn-outline btn-success text-accent flex justify-center"
                   }
                 >
                   ALL BUYERS
@@ -87,8 +87,8 @@ const DashboardLayout = () => {
                   to="/dashboard/reporteditems"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-success text-secondary rounded font-medium"
-                      : "bg-primary text-accent"
+                      ? "bg-success text-secondary rounded font-medium flex justify-center"
+                      : "btn btn-outline btn-success text-accent flex justify-center"
                   }
                 >
                   REPORTED ITEMS
@@ -99,8 +99,8 @@ const DashboardLayout = () => {
                   to="/dashboard/myorders"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-success text-secondary rounded font-medium"
-                      : "bg-primary text-accent"
+                      ? "bg-success text-secondary rounded font-medium flex justify-center"
+                      : "btn btn-outline btn-success text-accent flex justify-center"
                   }
                 >
                   MY ORDERS
@@ -111,8 +111,8 @@ const DashboardLayout = () => {
                   to="/dashboard/wishlist"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-success text-secondary rounded font-medium"
-                      : "bg-primary text-accent"
+                      ? "bg-success text-secondary rounded font-medium flex justify-center"
+                      : "btn btn-outline btn-success text-accent flex justify-center"
                   }
                 >
                   WISHLIST

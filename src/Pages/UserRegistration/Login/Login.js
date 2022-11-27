@@ -43,7 +43,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         toast.success("Logged in successfully!");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);

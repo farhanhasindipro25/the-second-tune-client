@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
+import useTitle from "../../../Hooks/useTitle";
 
 const Categories = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  useTitle("All Products");
+
+  return <div></div>;
 };
 
 export default Categories;
