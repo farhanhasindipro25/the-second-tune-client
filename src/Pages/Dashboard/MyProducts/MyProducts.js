@@ -12,6 +12,7 @@ const MyProducts = () => {
         <table className="table w-full rounded-xl mb-10">
           <thead>
             <tr>
+              <th></th>
               <th>Product Image</th>
               <th>Product Name</th>
               <th>Selling Price</th>
@@ -21,6 +22,7 @@ const MyProducts = () => {
           </thead>
           <tbody>
             <tr>
+              <td className="bg-secondary">1</td>
               <td className="bg-secondary">
                 <div className="flex items-center space-x-3">
                   <div className="avatar">

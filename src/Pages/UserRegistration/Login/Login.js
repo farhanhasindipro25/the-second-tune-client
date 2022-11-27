@@ -29,10 +29,27 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        saveUserToDB("Buyer");
         navigate(from, { replace: true });
         toast.success("Logged in successfully!");
       })
       .catch((error) => console.error(error));
+  };
+
+  const saveUserToDB = (role) => {
+    const user = { role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Saving user...", data);
+        navigate("/");
+      });
   };
 
   const handleLogin = (data) => {

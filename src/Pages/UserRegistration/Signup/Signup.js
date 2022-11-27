@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import useTitle from "../../../Hooks/useTitle";
 
@@ -12,6 +12,7 @@ const Signup = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const navigate = useNavigate();
   const { createUser, updateUser } = useContext(AuthContext);
 
   const [signUpError, setSignUpError] = useState("");
@@ -28,12 +29,30 @@ const Signup = () => {
           displayName: data.name,
         };
         updateUser(userInfo)
-          .then(() => {})
+          .then(() => {
+            saveUserToDB(data.name, data.email, data.role);
+          })
           .catch((error) => console.error(error));
       })
       .catch((error) => {
         console.error(error);
         setSignUpError(error.message);
+      });
+  };
+
+  const saveUserToDB = (name, email, role) => {
+    const user = { name, email, role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Saving user...", data);
+        navigate("/");
       });
   };
 
@@ -88,13 +107,13 @@ const Signup = () => {
                   required: "Password is required",
                   minLength: {
                     value: 6,
-                    message: "Password must be alteast 8 characters longer!",
+                    message: "Password must be alteast 6 characters longer!",
                   },
                   pattern: {
                     value:
                       /(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z]).{6}/,
                     message:
-                      "Your password must have at least 2 capital letters, 2 small letter, 2 digits, and 1 special character!",
+                      "Your password must have at least 2 capital letters, 2 small letters, 2 digits, and 1 special character!",
                   },
                 })}
                 className="input input-bordered input-primary mb-3 text-secondary"
@@ -105,6 +124,63 @@ const Signup = () => {
                   {errors.password?.message}
                 </p>
               )}
+              <div className="mt-6 py-3 rounded-lg bg-primary">
+                <h2 className="text-xs text-center font-semibold">
+                  Password Criteria
+                </h2>
+                <ul className="my-4">
+                  <li className="flex gap-4 my-1">
+                    <input
+                      type="radio"
+                      name="rule1"
+                      className="radio radio-primary ml-8 w-4 h-4"
+                      checked
+                      disabled
+                    />
+                    <p className="text-xs">Must have two capital letters</p>
+                  </li>
+                  <li className="flex gap-4 my-1">
+                    <input
+                      type="radio"
+                      name="rule2"
+                      className="radio radio-primary ml-8 w-4 h-4"
+                      checked
+                      disabled
+                    />
+                    <p className="text-xs">Must have two small letters</p>
+                  </li>
+                  <li className="flex gap-4 my-1">
+                    <input
+                      type="radio"
+                      name="rule3"
+                      className="radio radio-primary ml-8 w-4 h-4"
+                      checked
+                      disabled
+                    />
+                    <p className="text-xs">Must have two digits</p>
+                  </li>
+                  <li className="flex gap-4 my-1">
+                    <input
+                      type="radio"
+                      name="rule4"
+                      className="radio radio-primary ml-8 w-4 h-4"
+                      checked
+                      disabled
+                    />
+                    <p className="text-xs">Must have one special character</p>
+                  </li>
+                  <li className="flex gap-4 my-1">
+                    <input
+                      type="radio"
+                      name="rule5"
+                      className="radio radio-primary ml-8 w-4 h-4"
+                      checked
+                      disabled
+                    />
+                    <p className="text-xs">Must be of at least 6 in length</p>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div className="form-control w-full">
               <label className="label">
@@ -112,7 +188,13 @@ const Signup = () => {
                   Choose type of account
                 </span>
               </label>
-              <select className="select select-success text-secondary w-full mb-6">
+              <select
+                {...register("role", {
+                  required: "Account type is required",
+                })}
+                name="role"
+                className="select select-success text-secondary w-full mb-6"
+              >
                 <option className="text-secondary">Seller</option>
                 <option className="text-secondary">Buyer</option>
                 <option className="text-secondary">Admin</option>

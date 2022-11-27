@@ -12,6 +12,7 @@ const MyBuyers = () => {
         <table className="table w-full rounded-xl mb-10">
           <thead>
             <tr>
+              <th></th>
               <th>Name</th>
               <th>Email</th>
               <th>Purchased Item Image</th>
@@ -20,6 +21,7 @@ const MyBuyers = () => {
           </thead>
           <tbody>
             <tr>
+              <td className="bg-secondary">1</td>
               <td className="bg-secondary">
                 <div className="flex items-center space-x-3">
                   <div>
