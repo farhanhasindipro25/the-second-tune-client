@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import HomeCategoryCard from "./HomeCategoryCard";
 
@@ -5,9 +6,17 @@ const HomeCategories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/categories")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
+    // fetch("http://localhost:5000/categories")
+    //   .then((res) => res.json())
+    //   .then((data) => setCategories(data));
+
+    axios
+      .get("http://localhost:5000/categories")
+      .then((data) => {
+        const loadedCategories = data.data;
+        setCategories(loadedCategories);
+      })
+      .catch((error) => console.error(error));
   }, []);
 
   return (
