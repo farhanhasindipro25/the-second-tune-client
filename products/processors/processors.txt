@@ -1,0 +1,34 @@
+1. Neural DSP:
+
+Quad Cortex is the most powerful floor modeler on the planet. With a total of 6 cores (4x SHARC+ and 2x ARM Cortex-A5 running at 500MHz each), this ludicrous amount of processing capacity provides limitless sound design possibilities.
+
+Number of effects: 104Number of effects: 104Number of assignable footswitches: 10
+
+2. Line 6 Helix LT
+
+Powerful Dual-DSP HX Modeling
+Large 6.2”, 800x480-Pixel LCD Screen
+62 Amps, 37 Cabs, 16 Microphones, and 104 Effects
+Capacitive Footswitches. Touch to Edit, Hold to Assign, Press to Engage
+Up to 2 Expression Pedals, External Amp Switching, and Deep MIDI Control
+
+Number of effects: 104Number of effects: 104Number of assignable footswitches: 10
+
+3. Boss GX-100
+
+Powerful, easy-to-use amp/effects processor for guitar and bass
+24-bit AD/DA, 32-bit floating-point processing, and 48 kHz sampling rate
+Authentic tube amplifier tone and touch response with AIRD technology
+23 amplifier types and over 150 BOSS effects
+Ultra-flexible amp/effect routing with 15 assignable blocks
+Wide selection of onboard speaker types and support for loading WAV speaker IRs
+Streamlined modern design with intuitive color touch display and rugged metal chassis
+Unlimited effects control with freely assignable onboard footswitches and expression pedal with toe switch
+Connect up to two footswitches or an expression pedal for expanded control
+Send/return loop for external pedals or four-cable method
+Control jack for remote channel switching on your amplifier
+MIDI I/O jacks and multi-channel computer recording via USB
+Edit sounds from your computer with BOSS Tone Studio for macOS and Windows
+Download and share Livesets at BOSS Tone Exchange
+Optional Bluetooth® Audio MIDI Dual Adaptor allows you to edit sounds and stream audio from an iOS or Android mobile device.
+Number of effects: 154Amp models: 23

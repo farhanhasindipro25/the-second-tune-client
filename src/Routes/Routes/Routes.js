@@ -13,6 +13,7 @@ import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import Wishlist from "../../Pages/Dashboard/Wishlist/Wishlist";
 import Home from "../../Pages/Home/Home/Home";
 import Categories from "../../Pages/Products/Categories/Categories";
+import ProductsPerCategory from "../../Pages/Products/ProductsPerCategory/ProductsPerCategory";
 import Login from "../../Pages/UserRegistration/Login/Login";
 import Signup from "../../Pages/UserRegistration/Signup/Signup";
 import AdminRoute from "../AdminRoute/AdminRoute";
@@ -42,8 +43,14 @@ const router = createBrowserRouter([
         element: <Blog></Blog>,
       },
       {
-        path: "/products",
+        path: "/categories",
         element: <Categories></Categories>,
+      },
+      {
+        path: "/categories/:id",
+        element: <ProductsPerCategory></ProductsPerCategory>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/categories/${params.id}`),
       },
     ],
   },

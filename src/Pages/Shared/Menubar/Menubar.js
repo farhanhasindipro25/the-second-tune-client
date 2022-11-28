@@ -33,7 +33,7 @@ const Menubar = () => {
       </li>
       <li className="sm: text-secondary md:text-secondary lg:text-accent">
         <NavLink
-          to="/products"
+          to="/categories"
           className={({ isActive }) =>
             isActive
               ? "bg-success text-secondary rounded font-semibold text-sm"

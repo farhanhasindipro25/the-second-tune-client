@@ -5,11 +5,7 @@ import CategoryItem from "./CategoryItem";
 
 const Categories = () => {
   useTitle("All Products");
-  const {
-    data: categories = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: categories = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/categories");
@@ -25,7 +21,6 @@ const Categories = () => {
           <CategoryItem
             key={category._id}
             category={category}
-            refetch={refetch}
             isLoading={isLoading}
           ></CategoryItem>
         ))}

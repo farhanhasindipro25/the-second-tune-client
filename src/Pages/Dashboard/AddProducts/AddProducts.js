@@ -1,11 +1,11 @@
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 const AddProducts = () => {
   useTitle("Add Products");
   const imageHostKey = process.env.REACT_APP_imgbb_key;
-  console.log(imageHostKey);
 
   const {
     register,
@@ -15,11 +15,11 @@ const AddProducts = () => {
 
   const handleAddProduct = (data) => {
     const formData = new FormData();
-    console.log(data);
+    // console.log(data);
     const image = data.productPhoto[0];
-    console.log(image);
+    // console.log(image);
     formData.append("image", image);
-    console.log(formData);
+    // console.log(formData);
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
     fetch(url, {
       method: "POST",
@@ -29,6 +29,32 @@ const AddProducts = () => {
       .then((imgData) => {
         if (imgData.success) {
           console.log(imgData.data.url);
+          const product = {
+            productName: data.productName,
+            productPhoto: imgData.data.url,
+            productCategory: data.productCategory,
+            productCondition: data.productCondition,
+            sellingPrice: data.sellingPrice,
+            buyingPrice: data.buyingPrice,
+            timeUsed: data.timeUsed,
+            phoneNumber: data.phoneNumber,
+            location: data.location,
+            productDescription: data.productDescription,
+          };
+
+          // Saving product information to Database
+          fetch("http://localhost:5000/products", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+              toast.success(`${data.productName} has been added successfully.`);
+            });
         }
       });
   };
