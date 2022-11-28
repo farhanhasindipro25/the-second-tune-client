@@ -2,6 +2,7 @@ import React from "react";
 import useTitle from "../../../Hooks/useTitle";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddProducts = () => {
   useTitle("Add Products");
@@ -13,6 +14,8 @@ const AddProducts = () => {
     handleSubmit,
   } = useForm();
 
+  const navigate = useNavigate();
+
   const handleAddProduct = (data) => {
     const formData = new FormData();
     // console.log(data);
@@ -20,7 +23,7 @@ const AddProducts = () => {
     // console.log(image);
     formData.append("image", image);
     // console.log(formData);
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
     fetch(url, {
       method: "POST",
       body: formData,
@@ -54,6 +57,7 @@ const AddProducts = () => {
             .then((result) => {
               console.log(result);
               toast.success(`${data.productName} has been added successfully.`);
+              navigate("/dashboard/myproducts");
             });
         }
       });
