@@ -15,7 +15,10 @@ import Home from "../../Pages/Home/Home/Home";
 import Categories from "../../Pages/Products/Categories/Categories";
 import Login from "../../Pages/UserRegistration/Login/Login";
 import Signup from "../../Pages/UserRegistration/Signup/Signup";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
   {
@@ -58,35 +61,67 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addproducts",
-        element: <AddProducts></AddProducts>,
+        element: (
+          <SellerRoute>
+            <AddProducts></AddProducts>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/myproducts",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/mybuyers",
-        element: <MyBuyers></MyBuyers>,
+        element: (
+          <SellerRoute>
+            <MyBuyers></MyBuyers>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/allsellers",
-        element: <AllSellers></AllSellers>,
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allbuyers",
-        element: <AllBuyers></AllBuyers>,
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/reporteditems",
-        element: <ReportedItems></ReportedItems>,
+        element: (
+          <AdminRoute>
+            <ReportedItems></ReportedItems>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/myorders",
-        element: <MyOrders></MyOrders>,
+        element: (
+          <BuyerRoute>
+            <MyOrders></MyOrders>
+          </BuyerRoute>
+        ),
       },
       {
         path: "/dashboard/wishlist",
-        element: <Wishlist></Wishlist>,
+        element: (
+          <BuyerRoute>
+            <Wishlist></Wishlist>
+          </BuyerRoute>
+        ),
       },
     ],
   },

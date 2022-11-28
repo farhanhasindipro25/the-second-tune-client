@@ -29,15 +29,15 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        saveUserToDB("Buyer");
+        saveUserToDB(user.displayName, user.email, "Buyer");
         navigate(from, { replace: true });
         toast.success("Logged in successfully!");
       })
       .catch((error) => console.error(error));
   };
 
-  const saveUserToDB = (role) => {
-    const user = { role };
+  const saveUserToDB = (name, email, role) => {
+    const user = { name, email, role };
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {

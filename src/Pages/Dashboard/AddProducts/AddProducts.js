@@ -3,12 +3,40 @@ import useTitle from "../../../Hooks/useTitle";
 
 const AddProducts = () => {
   useTitle("Add Products");
+
+  const handleAddProduct = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const productName = form.productName.value;
+    const productCategory = form.productCategory.value;
+    const productCondition = form.productCondition.value;
+    const sellingPrice = form.sellingPrice.value;
+    const buyingPrice = form.buyingPrice.value;
+    const timeUsed = form.timeUsed.value;
+    const phoneNumber = form.phoneNumber.value;
+    const location = form.location.value;
+    const productDescription = form.productDescription.value;
+    console.log(
+      productName,
+      productCategory,
+      productCondition,
+      sellingPrice,
+      buyingPrice,
+      timeUsed,
+      phoneNumber,
+      location,
+      productDescription
+    );
+  };
   return (
     <div className="mx-4">
       <h2 className="text-success text-3xl font-semibold mt-12 flex md:justify-center sm:justify-center justify-center">
         ADD PRODUCTS
       </h2>
-      <form className="mt-10 mb-10 bg-secondary p-5 rounded-xl">
+      <form
+        className="mt-10 mb-10 bg-secondary p-5 rounded-xl"
+        onSubmit={handleAddProduct}
+      >
         <div className="flex gap-2 my-6">
           <div className="w-3/4">
             <label className="font-semibold" htmlFor="ProductName">
@@ -27,6 +55,7 @@ const AddProducts = () => {
             </label>
             <input
               type="file"
+              name="productPhoto"
               className="file-input file-input-bordered file-input-success text-secondary font-medium w-full"
             />
           </div>
@@ -36,7 +65,10 @@ const AddProducts = () => {
             <label className="font-semibold" htmlFor="ProductCategory">
               Product Category
             </label>
-            <select className="select select-success text-secondary w-full">
+            <select
+              name="productCategory"
+              className="select select-success text-secondary w-full"
+            >
               <option className="text-secondary">Guitars</option>
               <option className="text-secondary">Amplifiers</option>
               <option className="text-secondary">Processors</option>
@@ -49,7 +81,10 @@ const AddProducts = () => {
             <label className="font-semibold" htmlFor="ProductCondition">
               Product Condition
             </label>
-            <select className="select select-success text-secondary w-full">
+            <select
+              name="productCondition"
+              className="select select-success text-secondary w-full"
+            >
               <option className="text-secondary">Excellent</option>
               <option className="text-secondary">Good</option>
               <option className="text-secondary">Fair</option>
@@ -120,6 +155,7 @@ const AddProducts = () => {
             Product Description
           </label>
           <textarea
+            name="productDescription"
             className="textarea textarea-success text-secondary"
             placeholder="Product Description"
           ></textarea>
