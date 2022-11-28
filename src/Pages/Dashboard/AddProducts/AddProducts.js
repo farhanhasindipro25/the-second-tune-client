@@ -1,33 +1,38 @@
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
+import { useForm } from "react-hook-form";
 
 const AddProducts = () => {
   useTitle("Add Products");
+  const imageHostKey = process.env.REACT_APP_imgbb_key;
+  console.log(imageHostKey);
 
-  const handleAddProduct = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const productName = form.productName.value;
-    const productCategory = form.productCategory.value;
-    const productCondition = form.productCondition.value;
-    const sellingPrice = form.sellingPrice.value;
-    const buyingPrice = form.buyingPrice.value;
-    const timeUsed = form.timeUsed.value;
-    const phoneNumber = form.phoneNumber.value;
-    const location = form.location.value;
-    const productDescription = form.productDescription.value;
-    console.log(
-      productName,
-      productCategory,
-      productCondition,
-      sellingPrice,
-      buyingPrice,
-      timeUsed,
-      phoneNumber,
-      location,
-      productDescription
-    );
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const handleAddProduct = (data) => {
+    const formData = new FormData();
+    console.log(data);
+    const image = data.productPhoto[0];
+    console.log(image);
+    formData.append("image", image);
+    console.log(formData);
+    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          console.log(imgData.data.url);
+        }
+      });
   };
+
   return (
     <div className="mx-4">
       <h2 className="text-success text-3xl font-semibold mt-12 flex md:justify-center sm:justify-center justify-center">
@@ -35,7 +40,7 @@ const AddProducts = () => {
       </h2>
       <form
         className="mt-10 mb-10 bg-secondary p-5 rounded-xl"
-        onSubmit={handleAddProduct}
+        onSubmit={handleSubmit(handleAddProduct)}
       >
         <div className="flex gap-2 my-6">
           <div className="w-3/4">
@@ -44,10 +49,18 @@ const AddProducts = () => {
             </label>
             <input
               type="text"
+              {...register("productName", {
+                required: "Product Name is required",
+              })}
               name="productName"
               placeholder="Enter Product Name"
               className="input input-bordered input-success w-full text-secondary"
             />
+            {errors.productName && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.productName?.message}
+              </p>
+            )}
           </div>
           <div className="w-1/4">
             <label className="font-semibold" htmlFor="ProductName">
@@ -55,9 +68,16 @@ const AddProducts = () => {
             </label>
             <input
               type="file"
-              name="productPhoto"
+              {...register("productPhoto", {
+                required: "Product Photo is required",
+              })}
               className="file-input file-input-bordered file-input-success text-secondary font-medium w-full"
             />
+            {errors.productPhoto && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.productPhoto?.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="flex gap-2 my-6">
@@ -67,6 +87,9 @@ const AddProducts = () => {
             </label>
             <select
               name="productCategory"
+              {...register("productCategory", {
+                required: "Product Category is required",
+              })}
               className="select select-success text-secondary w-full"
             >
               <option className="text-secondary">Guitars</option>
@@ -76,12 +99,20 @@ const AddProducts = () => {
               <option className="text-secondary">Keyboards</option>
               <option className="text-secondary">Drums</option>
             </select>
+            {errors.productCategory && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.productCategory?.message}
+              </p>
+            )}
           </div>
           <div className="w-1/2">
-            <label className="font-semibold" htmlFor="ProductCondition">
+            <label className="font-semibold" htmlFor="sellingPrice">
               Product Condition
             </label>
             <select
+              {...register("productCondition", {
+                required: "Product Condition is required",
+              })}
               name="productCondition"
               className="select select-success text-secondary w-full"
             >
@@ -89,6 +120,11 @@ const AddProducts = () => {
               <option className="text-secondary">Good</option>
               <option className="text-secondary">Fair</option>
             </select>
+            {errors.productCondition && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.productCondition?.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="flex gap-2 my-6">
@@ -98,10 +134,18 @@ const AddProducts = () => {
             </label>
             <input
               type="number"
+              {...register("sellingPrice", {
+                required: "Selling Price is required",
+              })}
               name="sellingPrice"
               placeholder="Enter Selling Price"
               className="input input-bordered input-success w-full text-secondary"
             />
+            {errors.sellingPrice && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.sellingPrice?.message}
+              </p>
+            )}
           </div>
           <div className="w-1/2">
             <label className="font-semibold" htmlFor="BuyingPrice">
@@ -109,10 +153,18 @@ const AddProducts = () => {
             </label>
             <input
               type="number"
+              {...register("buyingPrice", {
+                required: "Buying Price is required",
+              })}
               name="buyingPrice"
               placeholder="Enter Buying Price"
               className="input input-bordered input-success w-full text-secondary"
             />
+            {errors.buyingPrice && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.buyingPrice?.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="flex gap-2 my-6">
@@ -123,9 +175,17 @@ const AddProducts = () => {
             <input
               type="text"
               name="timeUsed"
+              {...register("timeUsed", {
+                required: "Time Used is required",
+              })}
               placeholder="Enter Time Used (days/weeks/months/years)"
               className="input input-bordered input-success w-full text-secondary"
             />
+            {errors.timeUsed && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.timeUsed?.message}
+              </p>
+            )}
           </div>
           <div className="w-1/3">
             <label className="font-semibold" htmlFor="ProductName">
@@ -133,10 +193,18 @@ const AddProducts = () => {
             </label>
             <input
               type="number"
+              {...register("phoneNumber", {
+                required: "Phone Number is required",
+              })}
               name="phoneNumber"
               placeholder="Enter Phone Number"
               className="input input-bordered input-success w-full text-secondary"
             />
+            {errors.phoneNumber && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.phoneNumber?.message}
+              </p>
+            )}
           </div>
           <div className="w-1/3">
             <label className="font-semibold" htmlFor="ProductName">
@@ -145,9 +213,17 @@ const AddProducts = () => {
             <input
               type="text"
               name="location"
+              {...register("location", {
+                required: "Location is required",
+              })}
               placeholder="Enter Location"
               className="input input-bordered input-success w-full text-secondary"
             />
+            {errors.location && (
+              <p className="text-red-400 ml-1 mt-3" role="alert">
+                {errors.location?.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="flex flex-col">
@@ -156,9 +232,17 @@ const AddProducts = () => {
           </label>
           <textarea
             name="productDescription"
+            {...register("productDescription", {
+              required: "Product Description is required",
+            })}
             className="textarea textarea-success text-secondary"
             placeholder="Product Description"
           ></textarea>
+          {errors.productDescription && (
+            <p className="text-red-400 ml-1 mt-3" role="alert">
+              {errors.productDescription?.message}
+            </p>
+          )}
         </div>
         <button className="btn btn-success w-full my-6">ADD PRODUCT</button>
       </form>
