@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import useTitle from "../../../Hooks/useTitle";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const AddProducts = () => {
+  const categoryInfo = useLoaderData();
+  const { _id } = categoryInfo;
+
   useTitle("Add Products");
   const imageHostKey = process.env.REACT_APP_imgbb_key;
 
@@ -43,6 +46,9 @@ const AddProducts = () => {
   };
 
   const handleAddProduct = (data) => {
+    const categoryId = categoryInfo.find(
+      (category) => category.categoryName === data.productCategory
+    );
     const formData = new FormData();
     // console.log(data);
     const image = data.productPhoto[0];
@@ -71,6 +77,7 @@ const AddProducts = () => {
             productDescription: data.productDescription,
             sellerName: user.name || user.displayName,
             postingDate: getPostingDate(),
+            categoryId: categoryId._id,
           };
 
           console.log(product);
@@ -151,12 +158,13 @@ const AddProducts = () => {
               })}
               className="select select-success text-secondary w-full"
             >
-              <option className="text-secondary">Guitars</option>
-              <option className="text-secondary">Amplifiers</option>
-              <option className="text-secondary">Processors</option>
-              <option className="text-secondary">Pedals</option>
-              <option className="text-secondary">Keyboards</option>
-              <option className="text-secondary">Drums</option>
+              {categoryInfo.map((category) => (
+                <React.Fragment key={category._id}>
+                  <option className="text-secondary">
+                    {category.categoryName}
+                  </option>
+                </React.Fragment>
+              ))}
             </select>
             {errors.productCategory && (
               <p className="text-red-400 ml-1 mt-3" role="alert">

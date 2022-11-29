@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
+import Loader from "../../Shared/Loader/Loader";
 import CategoryItem from "./CategoryItem";
 
 const Categories = () => {
@@ -13,6 +14,10 @@ const Categories = () => {
       return data;
     },
   });
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
 
   return (
     <div className="bg-primary py-20">

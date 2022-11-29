@@ -1,6 +1,7 @@
 import React from "react";
+import Loader from "../../Shared/Loader/Loader";
 
-const ProductCards = ({ product }) => {
+const ProductCards = ({ product, isLoading }) => {
   const {
     productName,
     productPhoto,
@@ -11,7 +12,14 @@ const ProductCards = ({ product }) => {
     location,
     phoneNumber,
     productDescription,
+    // categoryId,
+    postingDate,
+    sellerName,
   } = product;
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
   return (
     <div>
       <div className="card card-compact bg-secondary shadow-xl">
@@ -40,6 +48,12 @@ const ProductCards = ({ product }) => {
           </p>
           <p>
             Description <span>{productDescription}</span>
+          </p>
+          <p>
+            Posted in <span>{postingDate}</span>
+          </p>
+          <p>
+            Posted by <span>{sellerName}</span>
           </p>
           <div className="card-actions justify-center my-6">
             <button className="btn btn-accent">Add to Wishlist</button>

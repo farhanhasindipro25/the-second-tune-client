@@ -1,6 +1,5 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useLoaderData } from "react-router-dom";
 import Loader from "../../Shared/Loader/Loader";
 import ProductCards from "./ProductCards";
 

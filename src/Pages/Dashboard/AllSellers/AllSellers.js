@@ -1,8 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
+import Loader from "../../Shared/Loader/Loader";
 
 const AllSellers = () => {
   useTitle("All Sellers");
+
+  const { data: sellers = [], isLoading } = useQuery({
+    queryKey: ["sellers"],
+    queryFn: async () => {
+      try {
+        const res = await fetch("http://localhost:5000/users/seller", {
+          // headers: {},
+        });
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
 
   return (
     <div>
@@ -21,31 +42,33 @@ const AllSellers = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="bg-secondary">1</td>
-              <td className="bg-secondary">
-                <div className="flex items-center space-x-3">
-                  <div>
-                    <div className="font-bold text-accent">Hart Hagerty</div>
+            {sellers.map((seller, i) => (
+              <tr key={seller._id}>
+                <td className="bg-secondary">{i + 1}</td>
+                <td className="bg-secondary">
+                  <div className="flex items-center space-x-3">
+                    <div>
+                      <div className="font-bold text-accent">{seller.name}</div>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td className="bg-secondary">Zemlak, Daniel and Leannon</td>
-              <td className="bg-secondary">Purple</td>
-              <th className="bg-secondary">
-                <div className="flex flex-col gap-2">
-                  <button className="btn btn-accent btn-outline btn-xs">
-                    VERIFY
-                  </button>
-                  <button className="btn btn-success btn-outline btn-xs">
-                    MAKE ADMIN
-                  </button>
-                  <button className="btn btn-error btn-outline btn-xs">
-                    DELETE
-                  </button>
-                </div>
-              </th>
-            </tr>
+                </td>
+                <td className="bg-secondary">{seller.email}</td>
+                <td className="bg-secondary">Purple</td>
+                <th className="bg-secondary">
+                  <div className="flex flex-col gap-2">
+                    <button className="btn btn-accent btn-outline btn-xs">
+                      VERIFY
+                    </button>
+                    <button className="btn btn-success btn-outline btn-xs">
+                      MAKE ADMIN
+                    </button>
+                    <button className="btn btn-error btn-outline btn-xs">
+                      DELETE
+                    </button>
+                  </div>
+                </th>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
