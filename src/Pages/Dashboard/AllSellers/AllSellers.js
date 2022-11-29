@@ -7,7 +7,6 @@ import Loader from "../../Shared/Loader/Loader";
 
 const AllSellers = () => {
   useTitle("All Sellers");
-  const [verifySeller, setVerifySeller] = useState([]);
   const [deleteSeller, setDeleteSeller] = useState(null);
   const {
     data: sellers = [],

@@ -2,8 +2,12 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../Shared/Loader/Loader";
 import ProductCards from "./ProductCards";
+import { useLoaderData } from "react-router-dom";
 
-const ProductsPerproduct = () => {
+const ProductsPerCategory = () => {
+  const categoryInformation = useLoaderData();
+  console.log(categoryInformation);
+  const { _id } = categoryInformation;
   const {
     data: products = [],
     isLoading,
@@ -12,9 +16,12 @@ const ProductsPerproduct = () => {
     queryKey: ["products"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/products", {
-          // headers: {},
-        });
+        const res = await fetch(
+          `http://localhost:5000/products?categoryId=${_id}`,
+          {
+            // headers: {},
+          }
+        );
         const data = await res.json();
         return data;
       } catch (error) {
@@ -41,4 +48,4 @@ const ProductsPerproduct = () => {
   );
 };
 
-export default ProductsPerproduct;
+export default ProductsPerCategory;

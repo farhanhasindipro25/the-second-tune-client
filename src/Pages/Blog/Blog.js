@@ -5,10 +5,10 @@ const Blog = () => {
   useTitle("Blog");
   return (
     <div className="bg-primary">
-      <h2 className="text-accent text-center text-3xl font-semibold pt-20">
+      <h2 className="text-accent text-center text-3xl font-semibold pt-20 lg:pb-0 md:pb-0 sm:pb-10 pb-10">
         BLOGS
       </h2>
-      <div className="container mx-auto lg:py-32 md:py-40">
+      <div className="lg:container lg:mx-auto md:mx-10 sm:mx-6 mx-6 lg:py-32 md:py-40">
         <div
           tabIndex={0}
           className="collapse collapse-arrow border border-base-300 bg-success rounded-box"

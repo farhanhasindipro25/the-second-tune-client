@@ -6,17 +6,16 @@ import Loader from "../../Shared/Loader/Loader";
 const MyProducts = () => {
   useTitle("My Products");
 
-  const {
-    data: products = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/products", {
-          // headers: {},
-        });
+        const res = await fetch(
+          `http://localhost:5000/products?categoryId=${_id}`,
+          {
+            // headers: {},
+          }
+        );
         const data = await res.json();
         return data;
       } catch (error) {
@@ -45,6 +44,7 @@ const MyProducts = () => {
               <th></th>
               <th>Product Image</th>
               <th>Product Name</th>
+              <th>Product Category</th>
               <th>Selling Price (BDT)</th>
               <th>SALES STATUS</th>
               <th>ACTIONS</th>
@@ -64,6 +64,7 @@ const MyProducts = () => {
                   </div>
                 </td>
                 <td className="bg-secondary">{product.productName}</td>
+                <td className="bg-secondary">{product.productCategory}</td>
                 <td className="bg-secondary">{product.sellingPrice}</td>
                 <th className="bg-secondary">
                   <span className="badge badge-accent badge-sm font-medium p-3">

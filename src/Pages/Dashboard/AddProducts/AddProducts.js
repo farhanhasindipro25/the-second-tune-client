@@ -7,8 +7,6 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const AddProducts = () => {
   const categoryInfo = useLoaderData();
-  const { _id } = categoryInfo;
-
   useTitle("Add Products");
   const imageHostKey = process.env.REACT_APP_imgbb_key;
 
