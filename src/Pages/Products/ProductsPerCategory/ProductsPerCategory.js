@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../Shared/Loader/Loader";
 import ProductCards from "./ProductCards";
 import { useLoaderData } from "react-router-dom";
+import BookingModal from "../BookingModal/BookingModal";
 
 const ProductsPerCategory = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const categoryInformation = useLoaderData();
-  console.log(categoryInformation);
+  //   console.log(categoryInformation);
+  const getBookingDate = () => {
+    const todaysDate = new Date();
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const month = todaysDate.getMonth();
+    const year = todaysDate.getFullYear();
+    const date = todaysDate.getDate();
+
+    const bookingDate = date + " " + months[month] + " " + year;
+    return bookingDate;
+  };
   const { _id } = categoryInformation;
-  const { data: products = [], isLoading } = useQuery({
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
@@ -38,6 +67,7 @@ const ProductsPerCategory = () => {
               key={product._id}
               product={product}
               isLoading={isLoading}
+              setSelectedProduct={setSelectedProduct}
             ></ProductCards>
           ))}
         </div>
@@ -47,6 +77,14 @@ const ProductsPerCategory = () => {
             No products available in this category
           </h2>
         </div>
+      )}
+      {selectedProduct && (
+        <BookingModal
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+          getBookingDate={getBookingDate}
+          refetch={refetch}
+        ></BookingModal>
       )}
     </div>
   );

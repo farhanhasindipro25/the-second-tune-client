@@ -65,10 +65,10 @@ const MyProducts = () => {
                   <td className="bg-secondary">{product.productCategory}</td>
                   <td className="bg-secondary">{product.sellingPrice}</td>
                   <th className="bg-secondary">
-                    <span className="badge badge-accent badge-sm font-medium p-3">
+                    <span className="badge badge-success badge-sm font-semibold p-3">
                       AVAILABLE
                     </span>
-                    <span className="badge badge-warning badge-sm font-medium p-3">
+                    <span className="badge badge-warning badge-sm font-semibold p-3">
                       SOLD
                     </span>
                   </th>

@@ -4,7 +4,7 @@ import useTitle from "../../../Hooks/useTitle";
 import Loader from "../../Shared/Loader/Loader";
 import { FaCheck } from "react-icons/fa";
 
-const ProductCards = ({ product, isLoading }) => {
+const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
   useTitle("Products");
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
@@ -33,13 +33,10 @@ const ProductCards = ({ product, isLoading }) => {
     location,
     phoneNumber,
     productDescription,
+    productCategory,
     postingDate,
     sellerName,
   } = product;
-
-  if (isLoading) {
-    return <Loader></Loader>;
-  }
 
   const isSellerVerified = users.find((user) => user.name === sellerName);
   //   console.log("Verified", sellerVerified.status);
@@ -68,6 +65,12 @@ const ProductCards = ({ product, isLoading }) => {
           </div>
 
           <div className="mt-8 ml-10">
+            <h2 className="font-medium">
+              Product Category:{" "}
+              <span className="font-semibold text-success">
+                {productCategory}
+              </span>
+            </h2>
             <h2 className="font-medium">
               Product Condition:{" "}
               <span className="font-semibold text-success">
@@ -110,7 +113,13 @@ const ProductCards = ({ product, isLoading }) => {
             <button className="btn btn-accent btn-outline btn-sm">
               Add to Wishlist
             </button>
-            <button className="btn btn-success btn-sm">Book Now</button>
+            <label
+              htmlFor="booking-modal"
+              className="btn btn-success btn-sm font-semibold"
+              onClick={() => setSelectedProduct(product)}
+            >
+              BOOK NOW
+            </label>
             <button className="btn btn-error btn-sm">Report</button>
           </div>
         </div>
