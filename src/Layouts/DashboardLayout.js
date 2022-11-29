@@ -31,7 +31,7 @@ const DashboardLayout = () => {
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
             {isAdmin && (
-              <ul className="menu p-4 w-80 bg-secondary my-4 rounded-xl text-base-content">
+              <ul className="menu p-4 w-80 bg-secondary my-4 rounded-xl">
                 <li className="my-2">
                   <NavLink
                     to="/dashboard/allsellers"

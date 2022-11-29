@@ -1,12 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import useTitle from "../../../Hooks/useTitle";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loader from "../../Shared/Loader/Loader";
 
 const AllSellers = () => {
   useTitle("All Sellers");
-
-  const { data: sellers = [], isLoading } = useQuery({
+  const [deleteSeller, setDeleteSeller] = useState(null);
+  const {
+    data: sellers = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
       try {
@@ -24,7 +29,21 @@ const AllSellers = () => {
   if (isLoading) {
     return <Loader></Loader>;
   }
+  const handleDeleteSeller = (seller) => {
+    fetch(`http://localhost:5000/users/seller/${seller._id}`, {
+      method: "DELETE",
+      // headers:{}
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+      });
+  };
 
+  const closeModal = () => {
+    setDeleteSeller(null);
+  };
   return (
     <div>
       <h2 className="text-success text-3xl font-semibold my-12 flex md:justify-center sm:justify-center justify-center">
@@ -35,10 +54,10 @@ const AllSellers = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Seller Name</th>
-              <th>Seller Email</th>
-              <th>Total Products Posted</th>
-              <th>Action</th>
+              <th className="text-center">Seller Name</th>
+              <th className="text-center">Seller Email</th>
+              <th className="text-center">Total Products Posted</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -46,14 +65,14 @@ const AllSellers = () => {
               <tr key={seller._id}>
                 <td className="bg-secondary">{i + 1}</td>
                 <td className="bg-secondary">
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center justify-center space-x-3">
                     <div>
                       <div className="font-bold text-accent">{seller.name}</div>
                     </div>
                   </div>
                 </td>
-                <td className="bg-secondary">{seller.email}</td>
-                <td className="bg-secondary">Purple</td>
+                <td className="bg-secondary text-center">{seller.email}</td>
+                <td className="bg-secondary text-center">Purple</td>
                 <th className="bg-secondary">
                   <div className="flex flex-col gap-2">
                     <button className="btn btn-accent btn-outline btn-xs">
@@ -62,9 +81,13 @@ const AllSellers = () => {
                     <button className="btn btn-success btn-outline btn-xs">
                       MAKE ADMIN
                     </button>
-                    <button className="btn btn-error btn-outline btn-xs">
+                    <label
+                      htmlFor="confirmationModal"
+                      className="btn btn-error btn-outline btn-xs"
+                      onClick={() => setDeleteSeller(seller)}
+                    >
                       DELETE
-                    </button>
+                    </label>
                   </div>
                 </th>
               </tr>
@@ -72,6 +95,16 @@ const AllSellers = () => {
           </tbody>
         </table>
       </div>
+      {deleteSeller && (
+        <ConfirmationModal
+          title={`Are you sure you want to remove ${deleteSeller.name} as a seller?`}
+          message={`This won't be recoverable in the future after you delete.`}
+          modalAction={handleDeleteSeller}
+          modalData={deleteSeller}
+          modalActionBtnName="DELETE"
+          closeModal={closeModal}
+        ></ConfirmationModal>
+      )}
     </div>
   );
 };

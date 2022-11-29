@@ -8,12 +8,11 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center mt-16">
+      <div className="flex justify-center items-center mt-28">
         <iframe
           src="https://giphy.com/embed/xUA7b8YlVHZbfKundK"
-          width="400"
-          height="400"
-          className="rounded-full"
+          width="250"
+          height="250"
           title="Welcome to dashboard"
         ></iframe>
       </div>
