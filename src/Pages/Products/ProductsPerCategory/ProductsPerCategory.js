@@ -8,11 +8,7 @@ const ProductsPerCategory = () => {
   const categoryInformation = useLoaderData();
   console.log(categoryInformation);
   const { _id } = categoryInformation;
-  const {
-    data: products = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
@@ -35,15 +31,23 @@ const ProductsPerCategory = () => {
   }
   return (
     <div className="bg-primary py-20">
-      <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-10 md:container md:mx-auto sm:mx-6 mx-6 pb-24">
-        {products.map((product) => (
-          <ProductCards
-            key={product._id}
-            product={product}
-            isLoading={isLoading}
-          ></ProductCards>
-        ))}
-      </div>
+      {products.length > 0 ? (
+        <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-10 md:container md:mx-auto sm:mx-6 mx-6 pb-24">
+          {products.map((product) => (
+            <ProductCards
+              key={product._id}
+              product={product}
+              isLoading={isLoading}
+            ></ProductCards>
+          ))}
+        </div>
+      ) : (
+        <div className="min-h-screen flex justify-center items-center">
+          <h2 className="text-3xl font-bold text-success">
+            No products available in this category
+          </h2>
+        </div>
+      )}
     </div>
   );
 };
