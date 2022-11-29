@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import useTitle from "../../../Hooks/useTitle";
 import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loader from "../../Shared/Loader/Loader";
@@ -37,7 +38,8 @@ const AllBuyers = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        toast.success(`${buyer.name} has been removed as a buyer.`);
         refetch();
       });
   };

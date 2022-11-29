@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import useTitle from "../../../Hooks/useTitle";
 import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loader from "../../Shared/Loader/Loader";
 
 const AllSellers = () => {
   useTitle("All Sellers");
+  const [verifySeller, setVerifySeller] = useState([]);
   const [deleteSeller, setDeleteSeller] = useState(null);
   const {
     data: sellers = [],
@@ -29,6 +31,28 @@ const AllSellers = () => {
   if (isLoading) {
     return <Loader></Loader>;
   }
+
+  const handleVerifySeller = (id) => {
+    fetch(`http://localhost:5000/users/seller/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "VERIFIED" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const verifiedNow = sellers.find((seller) => seller._id === id);
+          verifiedNow.status = "VERIFIED";
+          toast.success(`${verifiedNow.name} verified successfully!`);
+          refetch();
+        }
+      })
+      .catch((error) => console.error(error));
+  };
+
   const handleDeleteSeller = (seller) => {
     fetch(`http://localhost:5000/users/seller/${seller._id}`, {
       method: "DELETE",
@@ -36,7 +60,8 @@ const AllSellers = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        toast.success(`${seller.name} has been removed as a seller.`);
         refetch();
       });
   };
@@ -75,9 +100,19 @@ const AllSellers = () => {
                 <td className="bg-secondary text-center">Purple</td>
                 <th className="bg-secondary">
                   <div className="flex flex-col gap-2">
-                    <button className="btn btn-accent btn-outline btn-xs">
-                      VERIFY
-                    </button>
+                    {seller.status ? (
+                      <span className="bg-accent btn-outline btn-xs text-secondary rounded-lg flex justify-center items-center hover:bg-accent hover:text-secondary">
+                        {seller.status}
+                      </span>
+                    ) : (
+                      <button
+                        className="btn btn-accent btn-outline btn-xs"
+                        onClick={() => handleVerifySeller(seller._id)}
+                      >
+                        VERIFY
+                      </button>
+                    )}
+
                     <button className="btn btn-success btn-outline btn-xs">
                       MAKE ADMIN
                     </button>
