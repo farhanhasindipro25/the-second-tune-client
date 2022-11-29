@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 import useTitle from "../../../Hooks/useTitle";
 
 const Dashboard = () => {
   useTitle("Dashboard");
-  // const { user, updateUser } = useContext(AuthContext);
-  // const { userInfo } = updateUser;
-  // console.log(userInfo);
+  const { user } = useContext(AuthContext);
 
   return (
     <div>
@@ -19,7 +18,7 @@ const Dashboard = () => {
         ></iframe>
       </div>
       <h2 className="text-success text-3xl font-semibold flex justify-center">
-        {/* Welcome to your dashboard, {user.displayName || user.name} */}
+        Welcome to your dashboard, {user.displayName || user.name}
       </h2>
     </div>
   );

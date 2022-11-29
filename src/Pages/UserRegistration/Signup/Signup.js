@@ -28,6 +28,7 @@ const Signup = () => {
         const userInfo = {
           displayName: data.name,
         };
+        console.log(userInfo);
         updateUser(userInfo)
           .then(() => {
             saveUserToDB(data.name, data.email, data.role);

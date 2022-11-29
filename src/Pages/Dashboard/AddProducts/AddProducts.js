@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import useTitle from "../../../Hooks/useTitle";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const AddProducts = () => {
   useTitle("Add Products");
@@ -14,7 +15,32 @@ const AddProducts = () => {
     handleSubmit,
   } = useForm();
 
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
+  const getPostingDate = () => {
+    const todaysDate = new Date();
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const month = todaysDate.getMonth();
+    const year = todaysDate.getFullYear();
+    const date = todaysDate.getDate();
+
+    const postingDate = date + " " + months[month] + " " + year;
+    return postingDate;
+  };
 
   const handleAddProduct = (data) => {
     const formData = new FormData();
@@ -43,8 +69,11 @@ const AddProducts = () => {
             phoneNumber: data.phoneNumber,
             location: data.location,
             productDescription: data.productDescription,
+            sellerName: user.name || user.displayName,
+            postingDate: getPostingDate(),
           };
 
+          console.log(product);
           // Saving product information to Database
           fetch("http://localhost:5000/products", {
             method: "POST",

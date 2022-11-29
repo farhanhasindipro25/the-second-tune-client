@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
+import Loader from "../../Shared/Loader/Loader";
 
 const MyProducts = () => {
   useTitle("My Products");
@@ -23,11 +24,20 @@ const MyProducts = () => {
       }
     },
   });
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
   return (
     <div>
       <h2 className="text-success text-3xl font-semibold my-12 flex md:justify-center sm:justify-center justify-center">
-        MY PRODUCTS {products.length}
+        MY PRODUCTS
       </h2>
+      {products.length === 0 && (
+        <p className="text-success text-xl font-semibold my-12 flex md:justify-center sm:justify-center justify-center">
+          You have not added any products yet
+        </p>
+      )}
       <div className="overflow-x-auto w-full mx-2">
         <table className="table w-full rounded-xl mb-10">
           <thead>
@@ -35,7 +45,7 @@ const MyProducts = () => {
               <th></th>
               <th>Product Image</th>
               <th>Product Name</th>
-              <th>Selling Price</th>
+              <th>Selling Price (BDT)</th>
               <th>SALES STATUS</th>
               <th>ACTIONS</th>
             </tr>
@@ -56,10 +66,10 @@ const MyProducts = () => {
                 <td className="bg-secondary">{product.productName}</td>
                 <td className="bg-secondary">{product.sellingPrice}</td>
                 <th className="bg-secondary">
-                  <span className="badge badge-success badge-sm font-medium p-3">
+                  <span className="badge badge-accent badge-sm font-medium p-3">
                     AVAILABLE
                   </span>
-                  <span className="badge badge-error badge-sm font-medium p-3">
+                  <span className="badge badge-warning badge-sm font-medium p-3">
                     SOLD
                   </span>
                 </th>
