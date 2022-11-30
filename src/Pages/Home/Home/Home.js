@@ -1,5 +1,6 @@
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
+import Advertisements from "../Advertised/Advertisements";
 import ContactForm from "../ContactForm/ContactForm";
 import HeroSection from "../HeroSection/HeroSection";
 import HomeCategories from "../HomeCategories/HomeCategories";
@@ -11,7 +12,7 @@ const Home = () => {
   return (
     <div>
       <HeroSection></HeroSection>
-      {/* <Advertisements></Advertisements> */}
+      <Advertisements></Advertisements>
       <HomeCategories></HomeCategories>
       <WorkingProcess></WorkingProcess>
       <JoinCommunity></JoinCommunity>

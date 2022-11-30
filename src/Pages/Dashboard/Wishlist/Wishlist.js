@@ -52,7 +52,7 @@ const Wishlist = () => {
             </thead>
             <tbody>
               {wishlist.map((item, i) => (
-                <tr key={item._id}>
+                <tr key={item.product._id}>
                   <td className="bg-secondary">{i + 1}</td>
                   <td className="bg-secondary">
                     <div className="flex items-center space-x-3">

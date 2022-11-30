@@ -20,7 +20,11 @@ const MyOrders = () => {
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       try {
-        const res = await fetch(url);
+        const res = await fetch(url, {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
         const data = await res.json();
         return data;
       } catch (error) {
@@ -74,7 +78,7 @@ const MyOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings.map((booking, i) => (
+              {bookings?.map((booking, i) => (
                 <tr key={bookings._id}>
                   <td className="bg-secondary text-center">{i + 1}</td>
                   <td className="bg-secondary">

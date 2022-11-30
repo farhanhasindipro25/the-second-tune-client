@@ -41,6 +41,7 @@ const MyProducts = () => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({ ad: "ADVERTISED" }),
     })
@@ -58,7 +59,9 @@ const MyProducts = () => {
   const handleDeleteAddedProduct = (product) => {
     fetch(`http://localhost:5000/products/${product._id}`, {
       method: "DELETE",
-      // headers:{}
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
