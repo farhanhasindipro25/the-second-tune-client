@@ -33,6 +33,28 @@ const MyProducts = () => {
     return <Loader></Loader>;
   }
 
+  const handleAdvertiseProduct = (id) => {
+    const isProductAdvertised = products.find((product) => id === product._id);
+    console.log(isProductAdvertised);
+
+    fetch(`http://localhost:5000/myProducts/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ ad: "ADVERTISED" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success(`Product advertised successfully!`);
+          refetch();
+        }
+      })
+      .catch((error) => console.error(error));
+  };
+
   const handleDeleteAddedProduct = (product) => {
     fetch(`http://localhost:5000/products/${product._id}`, {
       method: "DELETE",
@@ -100,9 +122,18 @@ const MyProducts = () => {
                   </th>
                   <th className="bg-secondary">
                     <div className="flex flex-col gap-3">
-                      <button className="btn btn-accent btn-outline btn-xs">
-                        ADVERTISE
-                      </button>
+                      {product.ad === "ADVERTISED" ? (
+                        <span className="bg-accent btn-outline btn-xs text-secondary rounded-lg flex justify-center items-center hover:bg-accent hover:text-secondary">
+                          {product.ad}
+                        </span>
+                      ) : (
+                        <button
+                          className="btn btn-accent btn-outline btn-xs"
+                          onClick={() => handleAdvertiseProduct(product._id)}
+                        >
+                          ADVERTISE
+                        </button>
+                      )}
                       <label
                         htmlFor="confirmationModal"
                         className="btn btn-error btn-outline btn-xs"

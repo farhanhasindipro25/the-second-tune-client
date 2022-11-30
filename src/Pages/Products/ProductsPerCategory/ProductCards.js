@@ -1,11 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import useTitle from "../../../Hooks/useTitle";
 import Loader from "../../Shared/Loader/Loader";
 import { FaCheck } from "react-icons/fa";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
   useTitle("Products");
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -38,8 +43,32 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
     sellerName,
   } = product;
 
+
   const isSellerVerified = users.find((user) => user.name === sellerName);
   //   console.log("Verified", sellerVerified.status);
+
+  const handleAddWishlist = (product) => {
+    const wished = {
+      product,
+      buyerEmail: user?.email,
+    };
+    const url = "http://localhost:5000/wishlist";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(wished),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("Wished", result);
+        console.log(wished);
+        toast.success(`${product.productName} added to wishlist!`);
+        navigate("/dashboard/wishlist");
+      });
+  };
+
   return (
     <div>
       <div className="card card-compact bg-secondary shadow-xl">
@@ -109,10 +138,14 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
             </h2>
           </div>
 
-          <div className="card-actions justify-center my-6">
-            <button className="btn btn-accent btn-outline btn-sm">
+          <div className="card-actions justify-center items-center gap-4 my-6">
+            <button
+              className="btn btn-accent btn-outline btn-sm"
+              onClick={() => handleAddWishlist(product)}
+            >
               Add to Wishlist
             </button>
+
             <label
               htmlFor="booking-modal"
               className="btn btn-success btn-sm font-semibold"
@@ -120,6 +153,7 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
             >
               BOOK NOW
             </label>
+
             <button className="btn btn-error btn-sm">Report</button>
           </div>
         </div>
