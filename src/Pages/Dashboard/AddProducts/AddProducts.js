@@ -76,6 +76,7 @@ const AddProducts = () => {
             sellerName: user.name || user.displayName,
             postingDate: getPostingDate(),
             categoryId: categoryId._id,
+            sellerEmail: user?.email,
           };
 
           console.log(product);

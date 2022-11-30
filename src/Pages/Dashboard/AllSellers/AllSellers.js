@@ -43,9 +43,7 @@ const AllSellers = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount > 0) {
-          const verifiedNow = sellers.find((seller) => seller._id === id);
-          verifiedNow.status = "VERIFIED";
-          toast.success(`${verifiedNow.name} verified successfully!`);
+          toast.success(`verified successfully!`);
           refetch();
         }
       })

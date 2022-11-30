@@ -97,6 +97,12 @@ const Signup = () => {
                   {errors.email?.message}
                 </p>
               )}
+              {signUpError ===
+                "Firebase: Error (auth/email-already-in-use)." && (
+                <p className="text-error text-center mt-4">
+                  This email is already in use.
+                </p>
+              )}
             </div>
             <div className="form-control w-full">
               <label className="label">

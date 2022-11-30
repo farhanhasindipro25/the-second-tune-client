@@ -18,6 +18,7 @@ const BookingModal = ({
     const sellingPrice = form.sellingPrice.value;
     const buyerPhone = form.buyerPhoneNumber.value;
     const buyerLocation = form.buyerLocation.value;
+    const bookingDate = form.bookingDate.value;
 
     const booking = {
       buyerName: buyerName,
@@ -26,6 +27,8 @@ const BookingModal = ({
       sellingPrice: sellingPrice,
       buyerPhone: buyerPhone,
       buyerLocation: buyerLocation,
+      productPhoto: selectedProduct.productPhoto,
+      bookingDate: bookingDate,
     };
 
     fetch("http://localhost:5000/bookings", {
