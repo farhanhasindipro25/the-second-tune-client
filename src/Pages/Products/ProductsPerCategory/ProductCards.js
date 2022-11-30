@@ -43,7 +43,6 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
     sellerName,
   } = product;
 
-
   const isSellerVerified = users.find((user) => user.name === sellerName);
   //   console.log("Verified", sellerVerified.status);
 
@@ -57,6 +56,7 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(wished),
     })

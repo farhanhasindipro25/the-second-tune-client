@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const BookingModal = ({
@@ -8,6 +9,7 @@ const BookingModal = ({
   setSelectedProduct,
 }) => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleBookProduct = (event) => {
     event.preventDefault();
@@ -35,6 +37,7 @@ const BookingModal = ({
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(booking),
     })
@@ -44,6 +47,7 @@ const BookingModal = ({
         if (data.acknowledged) {
           setSelectedProduct(null);
           toast.success(`Your booking for ${productName} is confirmed.`);
+          navigate("/dashboard/myorders");
         }
       });
   };

@@ -40,7 +40,9 @@ const MyOrders = () => {
   const handleDeleteBooking = (booking) => {
     fetch(`http://localhost:5000/bookings/${booking._id}`, {
       method: "DELETE",
-      // headers:{}
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
