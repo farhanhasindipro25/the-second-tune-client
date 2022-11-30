@@ -17,7 +17,9 @@ const AllSellers = () => {
     queryFn: async () => {
       try {
         const res = await fetch("http://localhost:5000/users/seller", {
-          // headers: {},
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
         });
         const data = await res.json();
         return data;
@@ -36,6 +38,7 @@ const AllSellers = () => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({ status: "VERIFIED" }),
     })
@@ -53,7 +56,9 @@ const AllSellers = () => {
   const handleDeleteSeller = (seller) => {
     fetch(`http://localhost:5000/users/seller/${seller._id}`, {
       method: "DELETE",
-      // headers:{}
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
