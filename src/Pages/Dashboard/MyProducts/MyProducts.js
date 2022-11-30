@@ -1,13 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import useTitle from "../../../Hooks/useTitle";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loader from "../../Shared/Loader/Loader";
 
 const MyProducts = () => {
   useTitle("My Products");
   const { user } = useContext(AuthContext);
-  const { data: products = [], isLoading } = useQuery({
+  const [deleteAddedProduct, setDeleteAddedProduct] = useState(null);
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["products", user?.email],
     queryFn: async () => {
       try {
@@ -25,6 +32,25 @@ const MyProducts = () => {
   if (isLoading) {
     return <Loader></Loader>;
   }
+
+  const handleDeleteAddedProduct = (product) => {
+    fetch(`http://localhost:5000/products/${product._id}`, {
+      method: "DELETE",
+      // headers:{}
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        toast.success(
+          `${product.productName} has been removed from your added products.`
+        );
+        refetch();
+      });
+  };
+
+  const closeModal = () => {
+    setDeleteAddedProduct(null);
+  };
   return (
     <div>
       <h2 className="text-success text-3xl font-semibold my-12 flex md:justify-center sm:justify-center justify-center">
@@ -77,9 +103,13 @@ const MyProducts = () => {
                       <button className="btn btn-accent btn-outline btn-xs">
                         ADVERTISE
                       </button>
-                      <button className="btn btn-error btn-outline btn-xs">
+                      <label
+                        htmlFor="confirmationModal"
+                        className="btn btn-error btn-outline btn-xs"
+                        onClick={() => setDeleteAddedProduct(product)}
+                      >
                         DELETE
-                      </button>
+                      </label>
                     </div>
                   </th>
                 </tr>
@@ -87,6 +117,16 @@ const MyProducts = () => {
             </tbody>
           </table>
         </div>
+      )}
+      {deleteAddedProduct && (
+        <ConfirmationModal
+          title={`Are you sure you want to remove your AddedProduct for ${deleteAddedProduct.productName}?`}
+          message={`This won't be recoverable in the future after you delete.`}
+          modalAction={handleDeleteAddedProduct}
+          modalData={deleteAddedProduct}
+          modalActionBtnName="DELETE"
+          closeModal={closeModal}
+        ></ConfirmationModal>
       )}
     </div>
   );
