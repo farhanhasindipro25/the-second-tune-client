@@ -1,7 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import useTitle from "../../../Hooks/useTitle";
 
 const CheckoutForm = ({ selectedBooking }) => {
@@ -15,7 +14,6 @@ const CheckoutForm = ({ selectedBooking }) => {
   const [processingPayment, setProcessingPayment] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {

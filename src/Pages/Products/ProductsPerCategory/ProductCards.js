@@ -154,7 +154,7 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
               BOOK NOW
             </label>
 
-            <button className="btn btn-error btn-sm">Report</button>
+            {/* <button className="btn btn-error btn-sm">Report</button> */}
           </div>
         </div>
       </div>

@@ -103,6 +103,7 @@ const router = createBrowserRouter([
             <AllSellers></AllSellers>
           </AdminRoute>
         ),
+        loader: () => fetch("http://localhost:5000/products"),
       },
       {
         path: "/dashboard/allbuyers",

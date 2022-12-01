@@ -83,14 +83,13 @@ const AllSellers = () => {
               <th></th>
               <th className="text-center">Seller Name</th>
               <th className="text-center">Seller Email</th>
-              <th className="text-center">Total Products Posted</th>
               <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
             {sellers.map((seller, i) => (
               <tr key={seller._id}>
-                <td className="bg-secondary">{i + 1}</td>
+                <td className="bg-secondary text-center">{i + 1}</td>
                 <td className="bg-secondary">
                   <div className="flex items-center justify-center space-x-3">
                     <div>
@@ -99,7 +98,6 @@ const AllSellers = () => {
                   </div>
                 </td>
                 <td className="bg-secondary text-center">{seller.email}</td>
-                <td className="bg-secondary text-center">Purple</td>
                 <th className="bg-secondary">
                   <div className="flex flex-col gap-2">
                     {seller.status ? (

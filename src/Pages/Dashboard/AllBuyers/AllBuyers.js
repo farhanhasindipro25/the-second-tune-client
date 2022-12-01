@@ -64,14 +64,13 @@ const AllBuyers = () => {
               <th></th>
               <th className="text-center">Buyer Name</th>
               <th className="text-center">Buyer Email</th>
-              <th className="text-center">Total Products Purchased</th>
               <th className="text-center">ACTIONS</th>
             </tr>
           </thead>
           <tbody>
             {buyers.map((buyer, i) => (
               <tr key={buyer._id}>
-                <td className="bg-secondary">{i + 1}</td>
+                <td className="bg-secondary text-center">{i + 1}</td>
                 <td className="bg-secondary">
                   <div className="flex items-center justify-center space-x-3">
                     <div>
@@ -80,7 +79,6 @@ const AllBuyers = () => {
                   </div>
                 </td>
                 <td className="bg-secondary text-center">{buyer.email}</td>
-                <td className="bg-secondary text-center">Purple</td>
                 <th className="bg-secondary text-center">
                   <div className="flex flex-col gap-2">
                     <button className="btn btn-success btn-outline btn-xs">

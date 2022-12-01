@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { Link, useNavigate, useRouteError } from "react-router-dom";
+import { useNavigate, useRouteError } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const ErrorRoute = () => {
