@@ -56,7 +56,7 @@ const DashboardLayout = () => {
                     ALL BUYERS
                   </NavLink>
                 </li>
-                <li className="my-2">
+                {/* <li className="my-2">
                   <NavLink
                     to="/dashboard/reporteditems"
                     className={({ isActive }) =>
@@ -67,7 +67,7 @@ const DashboardLayout = () => {
                   >
                     REPORTED ITEMS
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
             )}
             {isBuyer && (
@@ -124,7 +124,7 @@ const DashboardLayout = () => {
                     MY PRODUCTS
                   </NavLink>
                 </li>
-                <li className="my-2">
+                {/* <li className="my-2">
                   <NavLink
                     to="/dashboard/mybuyers"
                     className={({ isActive }) =>
@@ -135,7 +135,7 @@ const DashboardLayout = () => {
                   >
                     MY BUYERS
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
             )}
           </div>

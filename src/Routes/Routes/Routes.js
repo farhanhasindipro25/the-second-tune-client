@@ -6,10 +6,11 @@ import AddProducts from "../../Pages/Dashboard/AddProducts/AddProducts";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
-import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
+// import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
-import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
+// import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import Wishlist from "../../Pages/Dashboard/Wishlist/Wishlist";
 import Home from "../../Pages/Home/Home/Home";
 import Categories from "../../Pages/Products/Categories/Categories";
@@ -18,6 +19,7 @@ import Login from "../../Pages/UserRegistration/Login/Login";
 import Signup from "../../Pages/UserRegistration/Signup/Signup";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
+import ErrorRoute from "../ErrorRoute/ErrorRoute";
 import NotFoundRoute from "../NotFoundRoute/NotFoundRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
@@ -26,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorRoute></ErrorRoute>,
     children: [
       {
         path: "/",
@@ -57,6 +60,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: <ErrorRoute></ErrorRoute>,
     element: (
       <PrivateRoute>
         <DashboardLayout></DashboardLayout>
@@ -84,14 +88,14 @@ const router = createBrowserRouter([
           </SellerRoute>
         ),
       },
-      {
-        path: "/dashboard/mybuyers",
-        element: (
-          <SellerRoute>
-            <MyBuyers></MyBuyers>
-          </SellerRoute>
-        ),
-      },
+      // {
+      //   path: "/dashboard/mybuyers",
+      //   element: (
+      //     <SellerRoute>
+      //       <MyBuyers></MyBuyers>
+      //     </SellerRoute>
+      //   ),
+      // },
       {
         path: "/dashboard/allsellers",
         element: (
@@ -108,14 +112,14 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      {
-        path: "/dashboard/reporteditems",
-        element: (
-          <AdminRoute>
-            <ReportedItems></ReportedItems>
-          </AdminRoute>
-        ),
-      },
+      // {
+      //   path: "/dashboard/reporteditems",
+      //   element: (
+      //     <AdminRoute>
+      //       <ReportedItems></ReportedItems>
+      //     </AdminRoute>
+      //   ),
+      // },
       {
         path: "/dashboard/myorders",
         element: (
@@ -131,6 +135,16 @@ const router = createBrowserRouter([
             <Wishlist></Wishlist>
           </BuyerRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <BuyerRoute>
+            <Payment></Payment>
+          </BuyerRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
       },
     ],
   },

@@ -1,6 +1,7 @@
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
 import Advertisements from "../Advertised/Advertisements";
+import Carousel from "../Carousel/Carousel";
 import ContactForm from "../ContactForm/ContactForm";
 import HeroSection from "../HeroSection/HeroSection";
 import HomeCategories from "../HomeCategories/HomeCategories";
@@ -13,6 +14,7 @@ const Home = () => {
     <div>
       <HeroSection></HeroSection>
       <Advertisements></Advertisements>
+      <Carousel></Carousel>
       <HomeCategories></HomeCategories>
       <WorkingProcess></WorkingProcess>
       <JoinCommunity></JoinCommunity>

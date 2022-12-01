@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import useTitle from "../../../Hooks/useTitle";
 import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
@@ -59,7 +60,7 @@ const MyOrders = () => {
   };
   return (
     <div>
-      <h2 className="text-success text-3xl font-semibold my-12 flex md:justify-center sm:justify-center justify-center">
+      <h2 className="text-success text-3xl font-bold my-12 flex md:justify-center sm:justify-center justify-center">
         MY ORDERS
       </h2>
       {bookings.length === 0 ? (
@@ -74,6 +75,7 @@ const MyOrders = () => {
                 <th></th>
                 <th className="text-center">Product Image</th>
                 <th className="text-center">Product Name</th>
+                <th className="text-center">Seller Name</th>
                 <th className="text-center">Selling Price</th>
                 <th className="text-center">Booking Date</th>
                 <th className="text-center">Action</th>
@@ -81,7 +83,7 @@ const MyOrders = () => {
             </thead>
             <tbody>
               {bookings?.map((booking, i) => (
-                <tr key={bookings._id}>
+                <tr key={booking._id}>
                   <td className="bg-secondary text-center">{i + 1}</td>
                   <td className="bg-secondary">
                     <div className="flex items-center justify-center space-x-3">
@@ -96,6 +98,9 @@ const MyOrders = () => {
                     {booking.productName}
                   </td>
                   <td className="bg-secondary text-center">
+                    {booking.sellerName}
+                  </td>
+                  <td className="bg-secondary text-center">
                     {booking.sellingPrice}
                   </td>
                   <td className="bg-secondary text-center">
@@ -103,9 +108,19 @@ const MyOrders = () => {
                   </td>
                   <th className="bg-secondary">
                     <div className="flex flex-col gap-2">
-                      <button className="btn btn-accent btn-outline btn-xs">
-                        MAKE PAYMENT
-                      </button>
+                      {!booking.paid && (
+                        <Link
+                          to={`/dashboard/payment/${booking._id}`}
+                          className="btn btn-accent btn-outline btn-xs"
+                        >
+                          <button>MAKE PAYMENT</button>
+                        </Link>
+                      )}
+                      {booking.paid && (
+                        <span className="bg-accent btn-outline btn-xs text-secondary rounded-lg flex justify-center items-center hover:bg-accent hover:text-secondary">
+                          PAID
+                        </span>
+                      )}
                       <label
                         htmlFor="confirmationModal"
                         className="btn btn-error btn-outline btn-xs"

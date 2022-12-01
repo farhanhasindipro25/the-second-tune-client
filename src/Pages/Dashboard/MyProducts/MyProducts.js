@@ -154,7 +154,7 @@ const MyProducts = () => {
       )}
       {deleteAddedProduct && (
         <ConfirmationModal
-          title={`Are you sure you want to remove your AddedProduct for ${deleteAddedProduct.productName}?`}
+          title={`Are you sure you want to delete ${deleteAddedProduct.productName} from your products?`}
           message={`This won't be recoverable in the future after you delete.`}
           modalAction={handleDeleteAddedProduct}
           modalData={deleteAddedProduct}

@@ -54,7 +54,7 @@ const AllBuyers = () => {
 
   return (
     <div>
-      <h2 className="text-success text-3xl font-semibold my-12 flex md:justify-center sm:justify-center justify-center">
+      <h2 className="text-success text-3xl font-bold my-12 flex md:justify-center sm:justify-center justify-center">
         All BUYERS
       </h2>
       <div className="overflow-x-auto w-full mx-2">

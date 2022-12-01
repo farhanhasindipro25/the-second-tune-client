@@ -101,7 +101,7 @@ const AddProducts = () => {
 
   return (
     <div className="mx-4">
-      <h2 className="text-success text-3xl font-semibold mt-12 flex md:justify-center sm:justify-center justify-center">
+      <h2 className="text-success text-3xl font-bold mt-12 flex md:justify-center sm:justify-center justify-center">
         ADD PRODUCTS
       </h2>
       <form

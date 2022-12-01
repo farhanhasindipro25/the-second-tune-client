@@ -31,6 +31,7 @@ const BookingModal = ({
       buyerLocation: buyerLocation,
       productPhoto: selectedProduct.productPhoto,
       bookingDate: bookingDate,
+      sellerName: selectedProduct.sellerName,
     };
 
     fetch("http://localhost:5000/bookings", {

@@ -6,9 +6,9 @@ const NotFoundRoute = () => {
       <div className="bg-secondary flex items-center justify-center flex-col h-screen">
         <iframe
           src="https://giphy.com/embed/SDUiharA58JhGCwDqP"
-          width="180"
-          height="180"
-          class="giphy-embed rounded-full"
+          width="280"
+          height="280"
+          className="giphy-embed rounded-full"
           allowFullScreen
           title="Route Not Found"
         ></iframe>
