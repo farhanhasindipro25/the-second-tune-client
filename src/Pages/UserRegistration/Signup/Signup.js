@@ -210,7 +210,6 @@ const Signup = () => {
               >
                 <option className="text-secondary">Seller</option>
                 <option className="text-secondary">Buyer</option>
-                <option className="text-secondary">Admin</option>
               </select>
             </div>
             <input
