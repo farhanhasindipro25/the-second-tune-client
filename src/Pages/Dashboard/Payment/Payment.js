@@ -1,8 +1,7 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
-import { useNavigation } from "react-day-picker";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import Loader from "../../Shared/Loader/Loader";
 import CheckoutForm from "./CheckoutForm";
 
@@ -11,10 +10,11 @@ const Payment = () => {
   const selectedBooking = useLoaderData();
   console.log(selectedBooking);
   const { productPhoto, productName, sellingPrice } = selectedBooking;
-  //   const navigation = useNavigation();
-  //   if (navigation.state === "loading") {
-  //     return <Loader></Loader>;
-  //   }
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loader></Loader>;
+  }
 
   return (
     <div className="flex flex-col justify-center items-center">

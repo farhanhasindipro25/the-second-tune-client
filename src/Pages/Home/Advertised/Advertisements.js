@@ -23,19 +23,30 @@ const Advertisements = () => {
     return <Loader></Loader>;
   }
 
+  const isAdvertised = products.filter(
+    (product) => product.ad === "ADVERTISED"
+  );
+  console.log(isAdvertised.length);
   return (
-    <div className="bg-primary pt-28 pb-56">
-      <h2 className="text-3xl text-center font-semibold text-success mb-16">
-        CHECK OUT WHAT'S TRENDING
-      </h2>
-      <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-10 md:container md:mx-auto sm:mx-6 mx-6 pb-24">
-        {products.map((category) => (
-          <AdvertisedItem
-            key={category._id}
-            category={category}
-          ></AdvertisedItem>
-        ))}
-      </div>
+    <div>
+      {isAdvertised.length > 0 && (
+        <div className="bg-primary pt-28 pb-32">
+          <h2 className="text-3xl text-center font-semibold text-success mb-16">
+            CHECK OUT WHAT'S TRENDING
+          </h2>
+          <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-10 md:container md:mx-auto sm:mx-6 mx-6 pb-24">
+            {products.map(
+              (product) =>
+                product.ad === "ADVERTISED" && (
+                  <AdvertisedItem
+                    key={product._id}
+                    product={product}
+                  ></AdvertisedItem>
+                )
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

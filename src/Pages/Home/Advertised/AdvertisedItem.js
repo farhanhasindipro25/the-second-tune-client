@@ -1,17 +1,87 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { FaCheck } from "react-icons/fa";
+import Loader from "../../Shared/Loader/Loader";
 // import { Link } from "react-router-dom";
 
-const AdvertisedItem = () => {
+const AdvertisedItem = ({ product }) => {
+  const { data: users = [], isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      try {
+        const res = await fetch("http://localhost:5000/users");
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
+  const {
+    productName,
+    productPhoto,
+    productCondition,
+    sellingPrice,
+    buyingPrice,
+    timeUsed,
+    productCategory,
+    sellerName,
+  } = product;
+
+  const isSellerVerified = users.find((user) => user.name === sellerName);
   return (
-    <div>
-      <div className="card shadow-xl image-full h-full">
-        <figure>
-          <img src="" alt="" />
-        </figure>
-        <div className="card-body">
-          <button className="btn lg:text-5xl md:text-5xl sm:text-3xl text-3xl lg:mt-32 md:mt-80 sm:mt-32 mt-32">
-            {/* <Link to={`/categories/${_id}`}>{categoryName}</Link> */}
-          </button>
+    <div className="card card-compact bg-secondary shadow-xl">
+      <figure>
+        <img src={productPhoto} alt="" />
+      </figure>
+      <div className="card-body">
+        <h2 className="mx-auto font-semibold text-xl">{productName}</h2>
+        <div className="mx-auto font-medium text-md flex gap-1">
+          Seller:{" "}
+          <span className="text-success flex items-center gap-1">
+            <div className="flex font-semibold">{sellerName}</div>
+            <div>
+              {isSellerVerified?.status === "VERIFIED" && (
+                <FaCheck className="bg-success text-accent w-4 h-4 p-1 rounded-full"></FaCheck>
+              )}
+            </div>
+          </span>
+        </div>
+        <div className="badge badge-error badge-sm mx-auto">ADVERTISEMENT</div>
+
+        <div className="mt-8 ml-10">
+          <h2 className="font-medium">
+            Product Category:{" "}
+            <span className="font-semibold text-success">
+              {productCategory}
+            </span>
+          </h2>
+          <h2 className="font-medium">
+            Product Condition:{" "}
+            <span className="font-semibold text-success">
+              {productCondition}
+            </span>
+          </h2>
+          <h2 className="font-medium">
+            Selling Price:{" "}
+            <span className="font-semibold text-success">
+              {sellingPrice} BDT
+            </span>
+          </h2>
+          <h2 className="font-medium">
+            Buying Price:{" "}
+            <span className="font-semibold text-success">
+              {buyingPrice} BDT
+            </span>
+          </h2>
+          <h2 className="font-medium">
+            Time Used:{" "}
+            <span className="font-semibold text-success">{timeUsed}</span>
+          </h2>
         </div>
       </div>
     </div>

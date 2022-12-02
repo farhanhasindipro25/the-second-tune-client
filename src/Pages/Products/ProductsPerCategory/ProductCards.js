@@ -78,7 +78,7 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
         <div className="card-body">
           <h2 className="mx-auto font-semibold text-xl">{productName}</h2>
           <div className="mx-auto font-medium text-md flex gap-1">
-            Posted by{" "}
+            Seller:{" "}
             <span className="text-success flex items-center gap-1">
               <div className="flex font-semibold">{sellerName}</div>
               <div>

@@ -20,7 +20,7 @@ const ErrorRoute = () => {
     <div>
       <div className="bg-secondary flex items-center justify-center flex-col h-screen">
         <iframe
-          src="https://giphy.com/embed/KFWDuK74i17uZltccZ"
+          src="https://giphy.com/embed/nVTa8D8zJUc2A"
           width="480"
           height="480"
           className="giphy-embed rounded-full"

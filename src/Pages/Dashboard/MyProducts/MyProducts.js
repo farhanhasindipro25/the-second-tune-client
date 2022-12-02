@@ -91,20 +91,20 @@ const MyProducts = () => {
             <thead>
               <tr>
                 <th></th>
-                <th>Product Image</th>
-                <th>Product Name</th>
-                <th>Product Category</th>
-                <th>Selling Price (BDT)</th>
-                <th>SALES STATUS</th>
-                <th>ACTIONS</th>
+                <th className="text-center">Product Image</th>
+                <th className="text-center">Product Name</th>
+                <th className="text-center">Product Category</th>
+                <th className="text-center">Selling Price (BDT)</th>
+                <th className="text-center">SALES STATUS</th>
+                <th className="text-center">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
               {products.map((product, i) => (
                 <tr key={product._id}>
-                  <td className="bg-secondary">{i + 1}</td>
+                  <td className="bg-secondary text-center">{i + 1}</td>
                   <td className="bg-secondary">
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center justify-center space-x-3">
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <img src={product.productPhoto} alt="" />
@@ -112,10 +112,16 @@ const MyProducts = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="bg-secondary">{product.productName}</td>
-                  <td className="bg-secondary">{product.productCategory}</td>
-                  <td className="bg-secondary">{product.sellingPrice}</td>
-                  <th className="bg-secondary">
+                  <td className="bg-secondary text-center">
+                    {product.productName}
+                  </td>
+                  <td className="bg-secondary text-center">
+                    {product.productCategory}
+                  </td>
+                  <td className="bg-secondary text-center">
+                    {product.sellingPrice}
+                  </td>
+                  <th className="bg-secondary flex justify-center items-center flex-col gap-2">
                     <span className="badge badge-success badge-sm font-semibold p-3">
                       AVAILABLE
                     </span>

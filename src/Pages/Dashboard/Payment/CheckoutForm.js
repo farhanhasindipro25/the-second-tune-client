@@ -5,7 +5,7 @@ import useTitle from "../../../Hooks/useTitle";
 
 const CheckoutForm = ({ selectedBooking }) => {
   useTitle("Payment");
-  const { sellingPrice, buyerEmail, buyerName, productName, _id } =
+  const { sellingPrice, buyerEmail, buyerName, productName, _id, productId } =
     selectedBooking;
   const [clientSecret, setClientSecret] = useState("");
   const [cardError, setCardError] = useState("");
@@ -74,6 +74,7 @@ const CheckoutForm = ({ selectedBooking }) => {
         transactionId: paymentIntent,
         buyerEmail,
         bookingId: _id,
+        productId: productId,
       };
       fetch("http://localhost:5000/payments", {
         method: "POST",
@@ -110,11 +111,11 @@ const CheckoutForm = ({ selectedBooking }) => {
                 fontSize: "16px",
                 color: "#00C49A",
                 "::placeholder": {
-                  color: "#F2F5FF",
+                  color: "#aab7c4",
                 },
               },
               invalid: {
-                color: "#9e2146",
+                color: "#EF3E36",
               },
             },
           }}

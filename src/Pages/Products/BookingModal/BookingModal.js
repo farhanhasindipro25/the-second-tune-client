@@ -32,8 +32,10 @@ const BookingModal = ({
       productPhoto: selectedProduct.productPhoto,
       bookingDate: bookingDate,
       sellerName: selectedProduct.sellerName,
+      productId: selectedProduct._id,
     };
 
+    // console.log(booking.productId);
     fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {

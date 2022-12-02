@@ -22,7 +22,8 @@ const Login = () => {
 
   const [loginError, setLoginError] = useState("");
   const [loggedUserEmail, setLoggedUserEmail] = useState("");
-  const [token] = useToken(loggedUserEmail);
+  const [googleUserEmail, setGoogleUserEmail] = useState("");
+  const [token] = useToken(loggedUserEmail || googleUserEmail);
   const { signIn, providerLogin } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
@@ -36,6 +37,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setGoogleUserEmail(user.email);
         saveUserToDB(user.displayName, user.email, "Buyer");
         navigate(from, { replace: true });
         toast.success("Logged in successfully!");
