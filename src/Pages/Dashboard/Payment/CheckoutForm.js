@@ -16,14 +16,17 @@ const CheckoutForm = ({ selectedBooking }) => {
   const elements = useElements();
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ sellingPrice }),
-    })
+    fetch(
+      "https://b612-used-products-resale.vercel.app/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ sellingPrice }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [sellingPrice]);
@@ -76,7 +79,7 @@ const CheckoutForm = ({ selectedBooking }) => {
         bookingId: _id,
         productId: productId,
       };
-      fetch("http://localhost:5000/payments", {
+      fetch("https://b612-used-products-resale.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",

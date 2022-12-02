@@ -15,6 +15,8 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -23,7 +25,7 @@ const Login = () => {
   const [loginError, setLoginError] = useState("");
   const [loggedUserEmail, setLoggedUserEmail] = useState("");
   const [googleUserEmail, setGoogleUserEmail] = useState("");
-  const [token] = useToken(loggedUserEmail || googleUserEmail);
+  const [token] = useToken(user?.email || loggedUserEmail || googleUserEmail);
   const { signIn, providerLogin } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
@@ -32,14 +34,25 @@ const Login = () => {
     navigate(from, { replace: true });
   }
 
+  const verifyGoogleSignIn = (email) => {
+    fetch(`https://b612-used-products-resale.vercel.app/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          navigate(from, { replace: true });
+        }
+      });
+  };
+
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
         setGoogleUserEmail(user.email);
+        verifyGoogleSignIn(user.email);
         saveUserToDB(user.displayName, user.email, "Buyer");
-        navigate(from, { replace: true });
         toast.success("Logged in successfully!");
       })
       .catch((error) => console.error(error));
@@ -47,7 +60,7 @@ const Login = () => {
 
   const saveUserToDB = (name, email, role) => {
     const user = { name, email, role };
-    fetch("http://localhost:5000/users", {
+    fetch("https://b612-used-products-resale.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

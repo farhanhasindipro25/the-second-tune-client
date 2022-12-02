@@ -2,7 +2,7 @@
 
 **A market place for second hand musical accessories.**
 
-**Live Site Link: **
+**Live Site Link: https://second-tune.web.app/**
 
 ### FEATURES
 1. There are three roles via which a user can register.
@@ -68,10 +68,3 @@ pass: FlullaBorg5!!
 BUYER:
 email: nathan@fillion.com
 pass: NathanFillion7!!
-
-
-Client: https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-farhanhasindipro25
-
-server: https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-farhanhasindipro25
-
-https://github.com/ProgrammingHero1/Used-products-resale-market-Assignment/blob/main/task_description.md

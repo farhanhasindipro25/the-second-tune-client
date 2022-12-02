@@ -81,7 +81,7 @@ const AddProducts = () => {
 
           console.log(product);
           // Saving product information to Database
-          fetch("http://localhost:5000/products", {
+          fetch("https://b612-used-products-resale.vercel.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",

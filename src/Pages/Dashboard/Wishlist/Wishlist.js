@@ -12,7 +12,7 @@ const Wishlist = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/wishlist?email=${user?.email}`,
+          `https://b612-used-products-resale.vercel.app/wishlist?email=${user?.email}`,
           {
             headers: {
               authorization: `bearer ${localStorage.getItem("accessToken")}`,

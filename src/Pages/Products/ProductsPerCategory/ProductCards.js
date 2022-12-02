@@ -15,7 +15,9 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/users");
+        const res = await fetch(
+          "https://b612-used-products-resale.vercel.app/users"
+        );
         const data = await res.json();
         return data;
       } catch (error) {
@@ -51,7 +53,7 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
       product,
       buyerEmail: user?.email,
     };
-    const url = "http://localhost:5000/wishlist";
+    const url = "https://b612-used-products-resale.vercel.app/wishlist";
     fetch(url, {
       method: "POST",
       headers: {

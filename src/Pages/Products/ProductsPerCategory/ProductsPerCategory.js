@@ -42,7 +42,7 @@ const ProductsPerCategory = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/products?categoryId=${_id}`,
+          `https://b612-used-products-resale.vercel.app/products?categoryId=${_id}`,
           {
             // headers: {},
           }

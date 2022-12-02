@@ -11,7 +11,7 @@ const MyOrders = () => {
   useTitle("My Orders");
   const { user } = useContext(AuthContext);
   const [deleteBooking, setDeleteBooking] = useState(null);
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://b612-used-products-resale.vercel.app/bookings?email=${user?.email}`;
 
   const {
     data: bookings = [],
@@ -39,12 +39,15 @@ const MyOrders = () => {
   }
 
   const handleDeleteBooking = (booking) => {
-    fetch(`http://localhost:5000/bookings/${booking._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale.vercel.app/bookings/${booking._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -82,56 +85,57 @@ const MyOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings?.map((booking, i) => (
-                <tr key={booking._id}>
-                  <td className="bg-secondary text-center">{i + 1}</td>
-                  <td className="bg-secondary">
-                    <div className="flex items-center justify-center space-x-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img src={booking.productPhoto} alt="" />
+              {bookings &&
+                bookings?.map((booking, i) => (
+                  <tr key={booking._id}>
+                    <td className="bg-secondary text-center">{i + 1}</td>
+                    <td className="bg-secondary">
+                      <div className="flex items-center justify-center space-x-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img src={booking.productPhoto} alt="" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="bg-secondary text-center">
-                    {booking.productName}
-                  </td>
-                  <td className="bg-secondary text-center">
-                    {booking.sellerName}
-                  </td>
-                  <td className="bg-secondary text-center">
-                    {booking.sellingPrice}
-                  </td>
-                  <td className="bg-secondary text-center">
-                    {booking.bookingDate}
-                  </td>
-                  <th className="bg-secondary">
-                    <div className="flex flex-col gap-2">
-                      {!booking.paid && (
-                        <Link
-                          to={`/dashboard/payment/${booking._id}`}
-                          className="btn btn-accent btn-outline btn-xs"
+                    </td>
+                    <td className="bg-secondary text-center">
+                      {booking.productName}
+                    </td>
+                    <td className="bg-secondary text-center">
+                      {booking.sellerName}
+                    </td>
+                    <td className="bg-secondary text-center">
+                      {booking.sellingPrice}
+                    </td>
+                    <td className="bg-secondary text-center">
+                      {booking.bookingDate}
+                    </td>
+                    <th className="bg-secondary">
+                      <div className="flex flex-col gap-2">
+                        {!booking.paid && (
+                          <Link
+                            to={`/dashboard/payment/${booking._id}`}
+                            className="btn btn-accent btn-outline btn-xs"
+                          >
+                            <button>MAKE PAYMENT</button>
+                          </Link>
+                        )}
+                        {booking.paid && (
+                          <span className="bg-accent btn-outline btn-xs text-secondary rounded-lg flex justify-center items-center hover:bg-accent hover:text-secondary">
+                            PAID
+                          </span>
+                        )}
+                        <label
+                          htmlFor="confirmationModal"
+                          className="btn btn-error btn-outline btn-xs"
+                          onClick={() => setDeleteBooking(booking)}
                         >
-                          <button>MAKE PAYMENT</button>
-                        </Link>
-                      )}
-                      {booking.paid && (
-                        <span className="bg-accent btn-outline btn-xs text-secondary rounded-lg flex justify-center items-center hover:bg-accent hover:text-secondary">
-                          PAID
-                        </span>
-                      )}
-                      <label
-                        htmlFor="confirmationModal"
-                        className="btn btn-error btn-outline btn-xs"
-                        onClick={() => setDeleteBooking(booking)}
-                      >
-                        REMOVE BOOKING
-                      </label>
-                    </div>
-                  </th>
-                </tr>
-              ))}
+                          REMOVE BOOKING
+                        </label>
+                      </div>
+                    </th>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

@@ -9,7 +9,9 @@ const AdvertisedItem = ({ product }) => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/users");
+        const res = await fetch(
+          "https://b612-used-products-resale.vercel.app/users"
+        );
         const data = await res.json();
         return data;
       } catch (error) {

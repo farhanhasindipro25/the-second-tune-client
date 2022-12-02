@@ -36,7 +36,7 @@ const BookingModal = ({
     };
 
     // console.log(booking.productId);
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://b612-used-products-resale.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

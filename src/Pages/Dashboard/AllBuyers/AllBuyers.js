@@ -16,11 +16,14 @@ const AllBuyers = () => {
     queryKey: ["buyers"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/users/buyer", {
-          headers: {
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-        });
+        const res = await fetch(
+          "https://b612-used-products-resale.vercel.app/users/buyer",
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
         const data = await res.json();
         return data;
       } catch (error) {
@@ -34,12 +37,15 @@ const AllBuyers = () => {
   }
 
   const handleDeleteBuyer = (buyer) => {
-    fetch(`http://localhost:5000/users/buyer/${buyer._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale.vercel.app/users/buyer/${buyer._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

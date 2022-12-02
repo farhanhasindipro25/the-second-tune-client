@@ -6,12 +6,12 @@ const HomeCategories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    // fetch("http://localhost:5000/categories")
+    // fetch("https://b612-used-products-resale.vercel.app/categories")
     //   .then((res) => res.json())
     //   .then((data) => setCategories(data));
 
     axios
-      .get("http://localhost:5000/categories")
+      .get("https://b612-used-products-resale.vercel.app/categories")
       .then((data) => {
         const loadedCategories = data.data;
         setCategories(loadedCategories);

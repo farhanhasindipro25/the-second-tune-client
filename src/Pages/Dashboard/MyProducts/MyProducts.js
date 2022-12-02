@@ -19,7 +19,7 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/myProducts?email=${user?.email}`
+          `https://b612-used-products-resale.vercel.app/myProducts?email=${user?.email}`
         );
         const data = await res.json();
         return data;
@@ -37,7 +37,7 @@ const MyProducts = () => {
     const isProductAdvertised = products.find((product) => id === product._id);
     console.log(isProductAdvertised);
 
-    fetch(`http://localhost:5000/myProducts/${id}`, {
+    fetch(`https://b612-used-products-resale.vercel.app/myProducts/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -57,12 +57,15 @@ const MyProducts = () => {
   };
 
   const handleDeleteAddedProduct = (product) => {
-    fetch(`http://localhost:5000/products/${product._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale.vercel.app/products/${product._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
