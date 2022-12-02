@@ -56,12 +56,9 @@ const AdvertisedItem = ({ product }) => {
         <div className="badge badge-error badge-sm mx-auto">ADVERTISEMENT</div>
 
         <div className="mt-8 ml-10">
-          <h2 className="font-medium">
-            Product Category:{" "}
-            <span className="font-semibold text-success">
-              {productCategory}
-            </span>
-          </h2>
+          <div className="badge badge-warning badge-md mb-3 mx-auto font-semibold">
+            {productCategory}
+          </div>
           <h2 className="font-medium">
             Product Condition:{" "}
             <span className="font-semibold text-success">

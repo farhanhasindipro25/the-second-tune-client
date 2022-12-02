@@ -132,7 +132,7 @@ const ProductCards = ({ product, isLoading, setSelectedProduct }) => {
               Phone Number{" "}
               <span className="font-semibold text-success">{phoneNumber}</span>
             </h2>
-            <h2 className="font-medium">
+            <h2 className="font-medium mt-6">
               Description{" "}
               <span className="font-semibold text-success">
                 {productDescription}
